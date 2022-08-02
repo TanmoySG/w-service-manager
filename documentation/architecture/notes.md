@@ -44,10 +44,10 @@ For Policy, we can have the compliance data and for contract we can have the req
 
     Developer Information
     - Email (Official/Representative)
-    - Service Name
     - Service Dev Rep. Name, Role
 
     Service Information
+    - Service Name
     - Service Repo (if any, open-source)
     - API Structure
     - Service Details (what it does)
@@ -70,3 +70,32 @@ For Policy, we can have the compliance data and for contract we can have the req
 #### Abbreviations
 
 * wP : wunder Platform
+
+### Questions 
+
+[2nd Aug]
+- What Data do we expose to a service?
+- Which fields do we keep and which we expose?
+- Which fields need delegation - second layer of request to get access to (like email)?
+    - Delegation may also be in the form of a identifier instead of the actual field itself
+    - Which one should it be? Justification for the same?
+
+## Conventions
+
+These conventions should be followed while developing, but also should be revisited frequently as they might change until a solid set of conventions can be formulated.
+
+#### Schema Definations
+
+Schemas Definations contain the schemas required to perform any valid request. Certain conventions to be followed (subject to changes)
+- Schema Files should be defined in JSON format preferably, though we need YAML Schema as well in future.
+- Schema Files should be stored in [`schema` directory](../../schema/)
+- Schema Files should be named in the following conventions
+```
+<schema-name>.schema.json
+<schema-name>.schema.yaml
+
+# schema groups can be collective namespace for schemas of simillar kind or origin.
+<schema-name>.<schema-group>.schema.json 
+...
+```
+- Defining a Schema should follow - [TBD]
