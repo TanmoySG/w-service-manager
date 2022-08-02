@@ -29,3 +29,13 @@ To-Do [1 Aug]
 - or maybe devide contract into request and contract, 
     - with compliance in contract 
     - and usage and other data in request
+
+### What info we need to capture?
+For Policy, we can have the compliance data and for contract we can have the request body/request data.
+
+#### Contract Request
+`Q.` What is a Contract?
+> To use wIP/Wunder-Platform Data, a service needs to have a usage contract with Service Manager that govern the usage of data, access control.
+
+`Q.` What is a Policy?
+> To use wIP/Wunder-Platform Data, a service needs comply with data-access and usage rules, to safegaurd the dev and user interest, and follow best-practices.
