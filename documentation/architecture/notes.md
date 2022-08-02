@@ -29,6 +29,7 @@ To-Do [1 Aug]
 - or maybe devide contract into request and contract, 
     - with compliance in contract 
     - and usage and other data in request
+- Done - 2nd Aug [Next Section](#what-info-we-need-to-capture)
 
 ### What info we need to capture?
 For Policy, we can have the compliance data and for contract we can have the request body/request data.
@@ -54,6 +55,12 @@ For Policy, we can have the compliance data and for contract we can have the req
     Data Usage and Requirements
     - wP Data Required
     - wP Data Usage Details
+
+- **JSON Schema or Data Types and Schema for Contract**
+    
+    To-Do [2 Aug]
+    - What schema for Contract data can be used? Need to be JSON as well as YML. 
+    - Formulate and add in a section of its own and add link here.
 
 - **What is a Policy?**
 
