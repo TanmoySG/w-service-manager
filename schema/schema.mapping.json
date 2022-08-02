@@ -1,0 +1,6 @@
+{
+    "service-onboarding": {
+        "contract": "schema/contract.service-onboarding.schema.json",
+        "policy": "schema/contract.service-onboarding.schema.json"
+    }
+}

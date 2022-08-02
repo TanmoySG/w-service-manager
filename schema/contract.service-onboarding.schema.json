@@ -1,0 +1,16 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/TanmoySG/w-service-manager/blob/service-onboarding/schema/new-request.schema.json",
+    "title": "New Service Onboarding",
+    "description": "Service Onboarding Request Schema",
+    "type": "object",
+    "properties": {
+        "productId": {
+            "description": "The unique identifier for a product",
+            "type": "integer"
+        }
+    },
+    "required": [
+        "productId"
+    ]
+}

@@ -99,3 +99,20 @@ Schemas Definations contain the schemas required to perform any valid request. C
 ...
 ```
 - Defining a Schema should follow - [TBD]
+
+#### Schema Mapping
+Schemas defined in the schema directory needs to be mapped in a schema.mapping.json file.
+- The Schema Mapping JSON has the schema names, schema groups 
+- These are mapped to their respective schema JSONs in the same directory
+- Schema Groups are mapped to all their schemas and the schemas mapped to the files.
+
+Example
+```json
+{
+    "shopper" : "schema/shopper.schema.json", 
+    "product": {
+        "new-product" : "schema/new-product.product.schema.json",
+        "product-price" : "schema/product-price.product.schema.json"
+    }
+}
+```
