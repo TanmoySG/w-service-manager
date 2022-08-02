@@ -49,7 +49,7 @@ For Policy, we can have the compliance data and for contract we can have the req
     Service Information
     - Service Name
     - Service Repo (if any, open-source)
-    - API Structure
+    - API Structure (TBD - why reqd. , what is this)
     - Service Details (what it does)
 
     Data Usage and Requirements

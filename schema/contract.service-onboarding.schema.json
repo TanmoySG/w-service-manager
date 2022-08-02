@@ -5,12 +5,32 @@
     "description": "Service Onboarding Request Schema",
     "type": "object",
     "properties": {
-        "productId": {
-            "description": "The unique identifier for a product",
-            "type": "integer"
+        "service": {
+            "description": "Information about Service",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "Name of Service",
+                    "type": "string"
+                },
+                "repository": {
+                    "description": "Open Source Repository for Service",
+                    "type": "string"
+                },
+                "details": {
+                    "description": "Information about what the Service does.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 2
+                }
+            },
+            "required": [
+                "name",
+                "details"
+            ]
         }
     },
-    "required": [
-        "productId"
-    ]
+    "required": []
 }
