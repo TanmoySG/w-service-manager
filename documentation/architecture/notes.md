@@ -45,9 +45,15 @@ For Policy, we can have the compliance data and for contract we can have the req
     - Email (Official/Representative)
     - Service Name
     - Service Dev Rep. Name, Role
+
+    Service Information
     - Service Repo (if any, open-source)
     - API Structure
-    - wP 
+    - Service Details (what it does)
+
+    Data Usage and Requirements
+    - wP Data Required
+    - wP Data Usage Details
 
 - **What is a Policy?**
 
@@ -56,4 +62,4 @@ For Policy, we can have the compliance data and for contract we can have the req
 
 #### Abbreviations
 
-*[wP] : wunder Platform
+*[wP]: wunder Platform
