@@ -30,7 +30,32 @@
                 "name",
                 "details"
             ]
+        },
+        "data": {
+            "description": "Information about Data Required and Usage",
+            "type": "object",
+            "patternProperties": {
+                "$": {
+                    "type": "object",
+                    "properties": {
+                        "access": {
+                            "description": "access type",
+                            "type": "string"
+                        },
+                        "use": {
+                            "description": "Usage Information",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "access",
+                        "use"
+                    ]
+                }
+            }
         }
     },
-    "required": []
+    "required": [
+        "service"
+    ]
 }
