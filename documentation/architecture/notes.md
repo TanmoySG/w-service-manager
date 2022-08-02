@@ -71,7 +71,7 @@ For Policy, we can have the compliance data and for contract we can have the req
 
 * wP : wunder Platform
 
-### Questions 
+## Questions 
 
 [2nd Aug]
 - What Data do we expose to a service?
@@ -84,7 +84,7 @@ For Policy, we can have the compliance data and for contract we can have the req
 
 These conventions should be followed while developing, but also should be revisited frequently as they might change until a solid set of conventions can be formulated.
 
-#### Schema Definations
+### Schema Definations
 
 Schemas Definations contain the schemas required to perform any valid request. Certain conventions to be followed (subject to changes)
 - Schema Files should be defined in JSON format preferably, though we need YAML Schema as well in future.
