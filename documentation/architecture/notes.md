@@ -62,6 +62,43 @@ For Policy, we can have the compliance data and for contract we can have the req
     - What schema for Contract data can be used? Need to be JSON as well as YML. 
     - Formulate and add in a section of its own and add link here.
 
+- **Access Types**
+    - "read" - read
+    - "write" - write
+    - "create" - create new
+    - "delete" - delete
+    - "modify" - modify
+    - "link" - link w/ something
+    - "delink" - delink w/ something
+    - `v1` will support only read.
+
+- The following is a valid contract (ignore values) for schema - [contract.service-onboarding](../../schema/contract.service-onboarding.schema.json)
+```json
+{
+  "service": {
+    "name": "t",
+    "details": [
+      "r",
+      "t"
+    ]
+  },
+  "data": {
+    "gas": {
+      "access": "read",
+      "use": "d"
+    },
+    "ta": {
+      "access": "read",
+      "use": "d"
+    }
+  },
+  "developer": {
+    "admin": "t",
+    "contributor": "f"
+  }
+}
+```
+
 - **What is a Policy?**
 
     To use wIP/Wunder-Platform Data, a service needs to comply with data-access and usage rules, to safegaurd the dev and user interest, and follow best-practices.
