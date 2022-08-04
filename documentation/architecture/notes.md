@@ -84,25 +84,26 @@ For Policy, we can have the compliance data and for contract we can have the req
 ```json
 {
   "service": {
-    "name": "t",
+    "name": "placeholders",
+    "respository" : "link.to.placeholders",
     "details": [
-      "r",
-      "t"
+      "A service to store Block data Files",
+      "Block Storage"
     ]
   },
   "data": {
-    "gas": {
-      "access": "read",
-      "use": "d"
+    "name": {
+      "access": ["read"],
+      "use": "Primary Identifier"
     },
-    "ta": {
-      "access": "read",
-      "use": "d"
+    "service_access_token": {
+      "access": ["read"],
+      "use": "Access Propagation"
     }
   },
   "developer": {
-    "admin": "t",
-    "contributor": "f"
+    "admin": ["tanmoysg@gmail.com", "tsgupta@mail.com"],
+    "contributor": []
   }
 }
 ```
