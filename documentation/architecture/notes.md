@@ -99,14 +99,32 @@ For Policy, we can have the compliance data and for contract we can have the req
 }
 ```
 
+- Giving `create` permission to a service can help it's users to create an account through the service without requireing the user to seperately create a wunder account. (Need more clarity and ideation on this. probably will be a part of WIP dev and not service manager)
+
 - **What is a Policy?**
 
     To use wIP/Wunder-Platform Data, a service needs to comply with data-access and usage rules, to safegaurd the dev and user interest, and follow best-practices.
 
+### Exposed Data 
 
-#### Abbreviations
+`Q.` What Data do we have in WIP/WPlatform?
 
-* wP : wunder Platform
+Currently only these user-provided data are stored
+- Email
+- Name/Username
+- Password (hashed)
+
+And wIP generated data that are stored are
+- UUID
+- Tokens
+
+Also, service specific data are generated (only) when a user subscribes to a service. These are
+- Service ID 
+- Service Name
+- Service Access Token
+- Service Configs (startup/basic)
+
+
 
 ## Questions 
 
