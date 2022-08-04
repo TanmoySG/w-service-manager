@@ -45,7 +45,15 @@ For Policy, we can have the compliance data and for contract we can have the req
     Developer Information
     - Email (Official/Representative)
     - Service Dev Rep. Name, Role
-
+    - Modification to the above model (latest - 5 Aug)
+      - There will be two levels of dev info
+      - Admin and Contributor
+      - Admin(s) will have higher level of access with creation, delete, and modification permissions 
+      - Contributor(s) have lower level access with limited permissions
+      - Both will be a list (array) of emails of admins and contributors with requirement for at least one admin.
+      - Admins will get the initial certs and other access related creds. 
+      - Admins will be Point-of-Contact for service onboarding.
+    
     Service Information
     - Service Name
     - Service Repo (if any, open-source)
