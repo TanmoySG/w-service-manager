@@ -164,7 +164,7 @@ Schemas defined in the schema directory needs to be mapped in a schema.mapping.j
 Example
 ```json
 {
-    "shopper" : "schema/shopper.schema.json", 
+    "shopper" : "schema/shopper.schema.json",
     "product": {
         "new-product" : "schema/new-product.product.schema.json",
         "product-price" : "schema/product-price.product.schema.json"
