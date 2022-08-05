@@ -149,7 +149,7 @@ Note
 - service-user-uuid (a layer of service specific uuid, to mask/protect wIP UUID)
 - service-id (can be merged with service-user-uuid)
 
-### Exposed Data
+## Exposed Data
 
 Based on [Exposable Data Fields](#exposable-data), the following fields can be exposed.
 
