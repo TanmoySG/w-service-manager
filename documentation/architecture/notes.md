@@ -136,12 +136,12 @@ Currently only these user-provided data are stored
 
 And wIP generated data that are stored are
 - UUID 
-  - Service Specific UUID - non wIP `exposable`
+  - Service Specific UUID - non wIP `exposable` - same as service id
 - Tokens
 
 Also, service specific data are generated (only) when a user subscribes to a service. These are
 - Service ID `exposable` - Service Specific UUID
-- Service Name `exposable` `should already be with the service`
+- Service Name `should already be with the service`
 - Service Access Token `exposable`
 - Service Configs (startup/basic) [need to formulate how an onboarded service can load initial configs into wIP]
 
