@@ -83,6 +83,7 @@ For Policy, we can have the compliance data and for contract we can have the req
 - The following is a valid contract (ignore values) for schema - [contract.service-onboarding](../../schema/contract.service-onboarding.schema.json)
 ```json
 {
+  "kind" : "contract.service-onboarding",
   "service": {
     "name": "placeholders",
     "respository" : "link.to.placeholders",
