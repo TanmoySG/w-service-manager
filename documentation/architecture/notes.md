@@ -158,12 +158,12 @@ Based on [Exposable Data Fields](#exposable-data), the following fields can be e
 - service-id 
 - service-access-token
 
-| Field | Description | Technical Name (code friendly name) |
-| ----- | ----------- | ----------------------------------- |
-| Email | Email of user | email |
-| Name  | Name/Username of User | username |
-| Service ID | Service Specific UUID | service-id | 
-| Service Access Token | Service Specific Access token | service-access-token |
+| Field | Description | Technical Name (code friendly name) | Allowable Access (in v1) |
+| ----- | ----------- | ----------------------------------- | ------------------------ |
+| Email | Email of user | email | read |
+| Name  | Name/Username of User | username | read |
+| Service ID | Service Specific UUID | service-id | read | 
+| Service Access Token | Service Specific Access token | service-access-token | read , create |
 
 
 ## Questions 
