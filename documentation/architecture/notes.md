@@ -111,9 +111,19 @@ For Policy, we can have the compliance data and for contract we can have the req
 
 - Giving `create` permission to a service can help it's users to create an account through the service without requireing the user to seperately create a wunder account. (Need more clarity and ideation on this. probably will be a part of WIP dev and not service manager)
 
-- **What is a Policy?**
+- **What is a Policy?** [shelved for future versions]
 
     To use wIP/Wunder-Platform Data, a service needs to comply with data-access and usage rules, to safegaurd the dev and user interest, and follow best-practices.
+
+    To Dos
+    - Need to formulate Policy in a structured manner.
+    - What Clause gets covered?
+    - Why Policy? Need to get this right
+    - What does policy technically provide?
+    - What goes into policy?
+    - How to add policy?
+    - How to enforce policy?
+    - Can Policy be replaced with something more security-wise enforcing?
 
 ### Exposed Data 
 
