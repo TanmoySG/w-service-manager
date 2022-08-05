@@ -5,6 +5,12 @@
     "description": "Service Onboarding Request Schema",
     "type": "object",
     "properties": {
+        "kind": {
+            "description": "Kind of Resource",
+            "enum": [
+                "contract.service-onboarding"
+            ]
+        },
         "service": {
             "description": "Information about Service",
             "type": "object",
@@ -40,9 +46,12 @@
                     "properties": {
                         "access": {
                             "description": "Access type",
-                            "enum": [
-                                "read"
-                            ]
+                            "type": "array",
+                            "items": {
+                                "enum": [
+                                    "read"
+                                ]
+                            }
                         },
                         "use": {
                             "description": "Usage Information",
