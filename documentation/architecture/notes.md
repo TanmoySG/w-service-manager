@@ -125,7 +125,7 @@ For Policy, we can have the compliance data and for contract we can have the req
     - How to enforce policy?
     - Can Policy be replaced with something more security-wise enforcing?
 
-### Exposed Data 
+### Exposable Data 
 
 `Q.` What Data do we have in WIP/WPlatform?
 
@@ -140,11 +140,28 @@ And wIP generated data that are stored are
 - Tokens
 
 Also, service specific data are generated (only) when a user subscribes to a service. These are
-- Service ID `exposable` `should already be with the service`
+- Service ID `exposable` - Service Specific UUID
 - Service Name `exposable` `should already be with the service`
 - Service Access Token `exposable`
 - Service Configs (startup/basic) [need to formulate how an onboarded service can load initial configs into wIP]
 
+### Exposed Data
+
+Based on [Exposable Data Fields](#exposable-data), the following fields can be exposed.
+
+- email
+- username
+- service-user-uuid (a layer of service specific uuid, to mask/protect wIP UUID)
+- service-id (can be merged with service-user-uuid)
+- service-name
+- service-access-token
+
+| Field | Description | Technical Name (code friendly name) |
+| ----- | ----------- | ----------------------------------- |
+| Email | Email of user | email |
+| Name  | Name/Username of User | username |
+| Service ID | Service Specific UUID | service-id | 
+| Service Access Token | Service Specific Access token | service-access-token |
 
 
 ## Questions 
