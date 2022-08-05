@@ -165,6 +165,8 @@ Based on [Exposable Data Fields](#exposable-data), the following fields can be e
 | Service ID | Service Specific UUID | service-id | read | 
 | Service Access Token | Service Specific Access token | service-access-token | read , create |
 
+## Kafka Setup
+![kafka-setup](./diagrams/service-connectors-Kafka-Setup-Service-Onboarding.jpeg)
 
 ## Questions 
 
