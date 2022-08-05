@@ -130,19 +130,20 @@ For Policy, we can have the compliance data and for contract we can have the req
 `Q.` What Data do we have in WIP/WPlatform?
 
 Currently only these user-provided data are stored
-- Email
-- Name/Username
+- Email `exposable`
+- Name/Username `exposable`
 - Password (hashed)
 
 And wIP generated data that are stored are
-- UUID
+- UUID 
+  - Service Specific UUID - non wIP `exposable`
 - Tokens
 
 Also, service specific data are generated (only) when a user subscribes to a service. These are
-- Service ID 
-- Service Name
-- Service Access Token
-- Service Configs (startup/basic)
+- Service ID `exposable` `should already be with the service`
+- Service Name `exposable` `should already be with the service`
+- Service Access Token `exposable`
+- Service Configs (startup/basic) [need to formulate how an onboarded service can load initial configs into wIP]
 
 
 
