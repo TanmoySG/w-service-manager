@@ -145,15 +145,17 @@ Also, service specific data are generated (only) when a user subscribes to a ser
 - Service Access Token `exposable`
 - Service Configs (startup/basic) [need to formulate how an onboarded service can load initial configs into wIP]
 
+Note
+- service-user-uuid (a layer of service specific uuid, to mask/protect wIP UUID)
+- service-id (can be merged with service-user-uuid)
+
 ### Exposed Data
 
 Based on [Exposable Data Fields](#exposable-data), the following fields can be exposed.
 
 - email
 - username
-- service-user-uuid (a layer of service specific uuid, to mask/protect wIP UUID)
-- service-id (can be merged with service-user-uuid)
-- service-name
+- service-id 
 - service-access-token
 
 | Field | Description | Technical Name (code friendly name) |
