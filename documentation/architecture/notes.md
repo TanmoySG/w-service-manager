@@ -168,14 +168,20 @@ Based on [Exposable Data Fields](#exposable-data), the following fields can be e
 ## Kafka Setup
 ![kafka-setup](./diagrams/service-connectors-Kafka-Setup-Service-Onboarding.jpeg)
 
+
 ## Questions 
 
 [2nd Aug]
-- What Data do we expose to a service?
-- Which fields do we keep and which we expose?
+- What Data do we expose to a service? [Ref.](#exposed-data)
+- Which fields do we keep and which we expose? [Ref.](#exposable-data)
 - Which fields need delegation - second layer of request to get access to (like email)?
     - Delegation may also be in the form of a identifier instead of the actual field itself
     - Which one should it be? Justification for the same?
+
+[7th Aug]
+- The Topics Identified are audit and integrate/integration. Do we need more topics for intermediate steps?
+- If yes what and why?
+- Do we need a step to get uuid and contract template first and have a topic for that?
 
 ## Conventions
 
