@@ -180,7 +180,7 @@ Based on [Exposable Data Fields](#exposable-data), the following fields can be e
 
 [7th Aug]
 - The Topics Identified are audit and integrate/integration. Do we need more topics for intermediate steps?
-- If yes what and why?
+  - If yes what and why?
 - Do we need a step to get uuid and contract template first and have a topic for that?
 
 ## Conventions
