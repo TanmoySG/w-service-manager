@@ -1,4 +1,3 @@
-# from kafka.admin import KafkaAdminClient, NewTopic
 from confluent_kafka.admin import AdminClient, NewTopic
 
 
@@ -21,9 +20,3 @@ class Topics:
             except Exception as e:
                 print("Failed to create topic {}: {}".format(topic, e))
 
-
-admin_client = AdminClient(
-    {"bootstrap.servers": "localhost:9092"})
-
-topics = Topics(admin_client)
-topics.create(topic='test-topic')
