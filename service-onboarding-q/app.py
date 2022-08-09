@@ -21,18 +21,20 @@ def api():
 
 @app.route("/v1/topic/create", methods=["POST"])
 def topic_create():
+    """
+    GET /v1/topic/create
+    {
+        "topics" : [
+            {"topic" : "xyz", "partitions" : 1, "replications" : 1}
+        ]
+    }
+    """
     request_data = request.get_json(force=True)
-    if request_data["topic"] == None:
+    if request_data["topics"] == None:
         return {"error": "Topic Name Required"}
-    topic_name = request_data.get("topic")
-    topic_partitions = request_data.get("partitions", 1)
-    topic_replications = request_data.get("replications", 1)
+    topics_list = request_data.get("topics")
     topics = Topics(admin_client)
-    response = topics.create(
-        topic=topic_name,
-        partitions=topic_partitions, 
-        replication_factor=topic_replications
-    )
+    response = topics.create(topics=topics_list)
     return jsonify({
         "message": response
     })

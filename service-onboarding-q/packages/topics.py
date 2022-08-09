@@ -6,17 +6,34 @@ class Topics:
     def __init__(self, kafkaClient: AdminClient) -> None:
         self.kafkaClient: AdminClient = kafkaClient
 
-    def create(self, topic: str, partitions: int = 1, replication_factor: int = 1) -> None:
-        newTopic = [NewTopic(topic, partitions, replication_factor)]
+    def create(self, topics) -> None:
+        if type(topics) == str:
+            topics = [{"topic" : topics}]
+        elif type(topics) != list:
+            topics = [topics]
+
+        newTopicsList = []
+        for topic in topics:
+            newTopicsList.append(
+                NewTopic(
+                    topic['topic'], 
+                    topic.get("partitions", 1),
+                    topic.get("replications", 1)
+                )
+            )
+
         topics = self.kafkaClient.create_topics(
-            new_topics=newTopic,
+            new_topics=newTopicsList,
             validate_only=False
         )
+
+        result = []
 
         for topic, f in topics.items():
             try:
                 f.result()  # The result itself is None
-                return "Topic {} created".format(topic)
+                result.append("Topic {} created".format(topic))
             except Exception as e:
-                return "Failed to create topic {}: {}".format(topic, e)
+                result.append("Failed to create topic {}: {}".format(topic, e))
 
+        return result
