@@ -16,7 +16,7 @@ class Topics:
         for topic, f in topics.items():
             try:
                 f.result()  # The result itself is None
-                print("Topic {} created".format(topic))
+                return "Topic {} created".format(topic)
             except Exception as e:
-                print("Failed to create topic {}: {}".format(topic, e))
+                return "Failed to create topic {}: {}".format(topic, e)
 
