@@ -183,6 +183,11 @@ Based on [Exposable Data Fields](#exposable-data), the following fields can be e
   - If yes what and why?
 - Do we need a step to get uuid and contract template first and have a topic for that?
 
+[9th Aug]
+- Audit Needs two Steps - One Automatic and another manual
+  - Auto Audit checks the contract 
+  - Add more details from NOTEBOOK
+
 ## Conventions
 
 These conventions should be followed while developing, but also should be revisited frequently as they might change until a solid set of conventions can be formulated.
