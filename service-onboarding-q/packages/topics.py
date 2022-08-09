@@ -37,3 +37,18 @@ class Topics:
                 result.append("Failed to create topic {}: {}".format(topic, e))
 
         return result
+    
+    def delete(self, topics) -> None:
+        if type(topics) != list:
+            topics = [topics]
+            
+        deletedTopics = self.kafkaClient.delete_topics(topics, operation_timeout=30)
+        
+        result = []
+        for topic in deletedTopics.items():
+            try:
+                f.result()  # The result itself is None
+                result.append("Topic {} deleted".format(topic))
+            except Exception as e:
+                result.append("Failed to delete topic {}: {}".format(topic, e))
+

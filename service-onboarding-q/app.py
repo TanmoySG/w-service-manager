@@ -1,16 +1,11 @@
-from configPy import JSONConfigParser
-from confluent_kafka.admin import AdminClient
 from flask import Flask, request, jsonify
-# from flask_cors import CORS
 
 from packages.topics import Topics
+from packages.admin import KAdmin
 
 app = Flask(__name__)
-# CORS(app)
 
-kafkaConfig = JSONConfigParser("./configuration.json").getConfigurations()
-admin_client = AdminClient(kafkaConfig)
-
+admin_client = KAdmin('./configuration.json')
 
 @app.route("/v1/api", methods=["GET"])
 def api():
@@ -21,14 +16,6 @@ def api():
 
 @app.route("/v1/topic/create", methods=["POST"])
 def topic_create():
-    """
-    GET /v1/topic/create
-    {
-        "topics" : [
-            {"topic" : "xyz", "partitions" : 1, "replications" : 1}
-        ]
-    }
-    """
     request_data = request.get_json(force=True)
     if request_data["topics"] == None:
         return {"error": "Topic Name Required"}
