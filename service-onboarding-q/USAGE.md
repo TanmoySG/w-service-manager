@@ -15,3 +15,16 @@ GET /v1/topic/create
         ]
     }
 ```
+
+### Startup Configuration Guide
+
+Currently only Topic Creation and Deletion at start-up is supported. 
+The structure of the JSON should be
+```json
+{
+    "topic" : {
+        "create" : <either false or list of topics>,
+        "delete" : <either false or list of topics>
+    }
+}
+```

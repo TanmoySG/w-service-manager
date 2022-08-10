@@ -1,35 +1,56 @@
 from topics import Topics
 from admin import KAdmin
 
-# admin_client = KAdmin('./configuration.json')
 
-class STARTUP:
-    
-    def __init__(self, configuration, admin_client=None) -> None:
-        self.admin_client = admin_client or KAdmin('./configuration.json')
+class StartUp:
+
+    def __init__(self, configuration, admin_client) -> None:
+        self.admin_client = admin_client
         self.configuration = configuration
         self.result = {
-            "createTopic" : None
+            "topics": {
+                "create" : None,
+                "delete" : None
+            }
         }
         
-    def execute(self) -> None:
-        topics = self.configuration["create_topics"]
-        self.result['createTopic'] = self.createTopicOnStartUp(topics)
-        return self.result
-    
     def createTopicOnStartUp(self, topics) -> None:
         t = Topics(self.admin_client)
         return t.create(topics=topics)
-    
+
+    def deleteTopicOnStartUp(self, topics) -> None:
+        t = Topics(self.admin_client)
+        return t.delete(topics=topics)
+        
+    def topicRunner(self, topicConfig):
+        if topicConfig.get("create", False) != False:
+            self.result["topics"]["create"] = self.createTopicOnStartUp(topics=topicConfig["create"])
+            
+        if topicConfig.get("delete", False) != False:
+            self.result["topics"]["delete"] = self.deleteTopicOnStartUp(topics=topicConfig["delete"])
+
+        return self.result
+
+    def execute(self) -> None:
+        if self.configuration.get("topic", False) != False:
+            topicsStartupConfig = self.configuration["topic"]
+            self.result= self.topicRunner(topicsStartupConfig)
+
+        return self.result
+
+
 sampleConfig = {
-    'create_topics' : [
-        {
-            "topic" : "testxyz0987"
-        },
-        {
-            "topic" : "testxyz087654"
-        }
-    ]
+    'topic': {
+        'create': [
+            {
+                "topic": "testxyz0239547"
+            },
+            {
+                "topic": "testxyz084567654"
+            }
+        ],
+        'delete': False
+    }
 }
-s = STARTUP(sampleConfig)
+s = StartUp(sampleConfig, admin_client= KAdmin('./configuration.json'))
 print(s.execute())
