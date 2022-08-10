@@ -45,10 +45,12 @@ class Topics:
         deletedTopics = self.kafkaClient.delete_topics(topics, operation_timeout=30)
         
         result = []
-        for topic in deletedTopics.items():
+        for topic, f in deletedTopics.items():
             try:
                 f.result()  # The result itself is None
                 result.append("Topic {} deleted".format(topic))
             except Exception as e:
                 result.append("Failed to delete topic {}: {}".format(topic, e))
+                
+        return result
 
