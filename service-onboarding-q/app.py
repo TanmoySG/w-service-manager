@@ -20,7 +20,7 @@ def startup():
             admin_client=admin_client
         )
         result = startup.execute()
-        print(result)
+        print("| Service-Onboarding Q API Warm-Up |> \t {0}".format(result))
 
 startup()
 
