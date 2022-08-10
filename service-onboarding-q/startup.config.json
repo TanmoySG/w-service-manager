@@ -1,0 +1,16 @@
+{
+    "topic": {
+        "create": [
+            {
+                "topic": "audit"
+            },
+            {
+                "topic": "approval"
+            },
+            {
+                "topic": "integrate"
+            }
+        ],
+        "delete" : false
+    }
+}

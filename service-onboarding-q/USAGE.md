@@ -28,3 +28,35 @@ The structure of the JSON should be
     }
 }
 ```
+To create Topics on start-up
+```json
+{
+    "topic": {
+        "create": [
+            {
+                "topic": "audit"
+            },
+            {
+                "topic": "approval"
+            },
+            {
+                "topic": "integrate"
+            }
+        ],
+        "delete" : false
+    }
+}
+```
+To Delete Topics on start-up
+```json
+{
+    "topic": {
+        "create": false,
+        "delete": [
+            "audit",
+            "approval",
+            "integrate"
+        ]
+    }
+}
+```

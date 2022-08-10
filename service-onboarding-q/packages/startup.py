@@ -1,6 +1,4 @@
-from topics import Topics
-from admin import KAdmin
-
+from packages.topics import Topics
 
 class StartUp:
 
@@ -37,20 +35,3 @@ class StartUp:
             self.result= self.topicRunner(topicsStartupConfig)
 
         return self.result
-
-
-sampleConfig = {
-    'topic': {
-        'create': [
-            {
-                "topic": "testxyz0239547"
-            },
-            {
-                "topic": "testxyz084567654"
-            }
-        ],
-        'delete': False
-    }
-}
-s = StartUp(sampleConfig, admin_client= KAdmin('./configuration.json'))
-print(s.execute())
