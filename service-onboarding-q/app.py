@@ -27,5 +27,17 @@ def topic_create():
     })
 
 
+@app.route("/v1/topic/delete", methods=["POST"])
+def topic_delete():
+    request_data = request.get_json(force=True)
+    if request_data["topics"] == None:
+        return {"error": "Topic Name Required"}
+    topics_list = request_data.get("topics")
+    topics = Topics(admin_client)
+    response = topics.delete(topics=topics_list)
+    return jsonify({
+        "message": response
+    })
+
 if __name__ == '__main__':
     app.run()
