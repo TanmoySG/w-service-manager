@@ -9,7 +9,7 @@ from packages.topics import Topics
 
 app = Flask(__name__)
 
-admin_client = KAdmin('./configuration.json')
+admin_client = KAdmin('/app/configurations/configuration.json')
 
 def startup():
     startup_configuration_path = os.environ.get("SOQ_STARTUP_CONFIG", False)
@@ -58,4 +58,4 @@ def topic_delete():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5002)
