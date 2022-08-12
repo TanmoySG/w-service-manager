@@ -21,14 +21,14 @@ Based on the components/sub-components of onboarding, the sub tasks (broadly) ar
 # Timelines
 
 Timeline to track the development of the sub components. These broader tasks/components will be tracked under these categories -
-- Design - Designing the solution/approach
-- Development - Implementation of the Design + Fixing the design
-- Testing - Testing the Developed Implementation
-- Deployment - Deploying the Tested Implementation
-- Integration - Integration with other sibling-services/components
+- `Design` - Designing the solution/approach
+- `Development` - Implementation of the Design + Fixing the design
+- `Testing` - Testing the Developed Implementation
+- `Deployment` - Deploying the Tested Implementation
+- `Integration` - Integration with other sibling-services/components
 
 One more category of tracking that will be done as an additional on-requirement basis one the system is up and can be worked on for improvements and other standardization as per time in hand. These are not mandatory or in the dev lifecycle but are recommended when other tasks are done.
-- Standardization/Tech Debt Fixing - Post Integration Tracking for Standardizing certain approaches and Fixing [Tech Debts](https://www.productplan.com/glossary/technical-debt/)
+- `Standardization/Tech Debt Fixing` - Post Integration Tracking for Standardizing certain approaches and Fixing [Tech Debts](https://www.productplan.com/glossary/technical-debt/)
 
 ## Onboarding
 - intake [current focus] 
