@@ -3,6 +3,7 @@ services:
   redpanda:
     image: docker.redpanda.com/vectorized/redpanda:v21.11.15
     container_name: redpanda
+    # Not working - Need to find a solution to turn-off logging from rpk
     logging:
       driver: none
     command:
