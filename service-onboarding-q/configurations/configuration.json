@@ -1,0 +1,3 @@
+{
+    "bootstrap.servers": "redpanda:29092"
+}
