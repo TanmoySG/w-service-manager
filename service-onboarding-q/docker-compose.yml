@@ -30,7 +30,7 @@ services:
       - 28082:28082
       - 29092:29092
     networks:
-      - wundernetwork
+      - soqnetworks
 
   soq-api:
     depends_on:
@@ -41,8 +41,8 @@ services:
     volumes:
       - ${PWD}/configurations/:/app/configurations/
     networks:
-      - wundernetwork
+      - soqnetworks
 
 networks:
-  wundernetwork:
+  soqnetworks:
     driver: bridge
