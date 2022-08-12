@@ -192,6 +192,19 @@ Based on [Exposable Data Fields](#exposable-data), the following fields can be e
 
 These conventions should be followed while developing, but also should be revisited frequently as they might change until a solid set of conventions can be formulated.
 
+### Directory Structure
+
+The different components should have their own directory. For eg.
+```
+- w-service-manager
+  - onboarding
+    - ...
+  - manager
+    - ...
+  - provision
+    - ...
+```
+
 ### Schema Definations
 
 Schemas Definations contain the schemas required to perform any valid request. Certain conventions to be followed (subject to changes)
