@@ -1,8 +1,8 @@
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://github.com/TanmoySG/w-service-manager/blob/service-onboarding/schema/new-request.schema.json",
-    "title": "New Service Onboarding",
-    "description": "Service Onboarding Request Schema",
+    "$id": "https://github.com/TanmoySG/w-service-manager/blob/service-onboarding/schema/service-onboarding/contract.intake.schema.json",
+    "title": "New Service Onboarding Contract",
+    "description": "Service Onboarding Contract Schema",
     "type": "object",
     "properties": {
         "kind": {
