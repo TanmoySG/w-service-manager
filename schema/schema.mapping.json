@@ -1,6 +1,8 @@
 {
     "service-onboarding": {
-        "contract": "schema/contract.service-onboarding.schema.json",
-        "policy": "schema/contract.service-onboarding.schema.json"
+        "intake": {
+            "contract": "schema/service-onboarding/contract.intake.schema.json",
+            "request": "schema/service-onboarding/request.intake.schema.json"
+        }
     }
 }
