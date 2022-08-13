@@ -7,8 +7,9 @@
     "properties": {
         "kind": {
             "description": "Kind of Resource",
+            "default": "contract.intake.service-onboarding",
             "enum": [
-                "contract.service-onboarding"
+                "contract.intake.service-onboarding"
             ]
         },
         "request_id": {
@@ -95,6 +96,7 @@
         }
     },
     "required": [
+        "kind",
         "service",
         "data",
         "developer"
