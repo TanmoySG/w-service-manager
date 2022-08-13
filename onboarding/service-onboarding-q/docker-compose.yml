@@ -40,7 +40,7 @@ services:
     ports:
       - "5002:5002"
     volumes:
-      - ${PWD}/configurations/:/app/configurations/
+      - ./configurations/:/app/configurations/
     networks:
       - soqnetworks
 
