@@ -11,6 +11,10 @@
                 "contract.service-onboarding"
             ]
         },
+        "request_id": {
+            "description": "Service Onboarding ",
+            "type": "string"
+        },
         "service": {
             "description": "Information about Service",
             "type": "object",
