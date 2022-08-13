@@ -36,8 +36,9 @@
         }
     },
     "required": [
-        "service",
-        "data",
-        "developer"
+        "kind",
+        "service_name",
+        "request_type",
+        "service_owners"
     ]
 }
