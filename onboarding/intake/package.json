@@ -10,7 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "ajv": "^8.11.0",
-    "kafkajs": "^2.1.0"
+    "kafkajs": "^2.1.0",
+    "node-fetch": "^3.2.10"
   },
   "type": "module"
 }
