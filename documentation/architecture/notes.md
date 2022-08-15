@@ -34,6 +34,32 @@ To-Do [1 Aug]
 ### What info we need to capture?
 For Policy, we can have the compliance data and for contract we can have the request body/request data.
 
+### WDB Schema for Inatake request
+- User Provided
+  - service_name [string]
+  - request_type [string]
+  - service_owners [array]
+- Sys Gen
+  - Timestamp
+  - Req UUID
+  - state/status
+
+Collection Details
+```
+database: serviceOnboardingStage
+collection: IntakeRequest-Stage
+schema: [
+  requestID
+  requestType
+  serviceName
+  serviceOwners
+  status
+  timestamp
+]
+```
+
+
+
 #### Contract Request
 
 - **What is a Contract?**
