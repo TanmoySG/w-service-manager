@@ -247,6 +247,14 @@ Schemas Definations contain the schemas required to perform any valid request. C
 ```
 - Defining a Schema should follow - [TBD]
 
+Do not add the following fields in JSON Schema File
+```
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/TanmoySG/w-service-manager/blob/service-onboarding/schema/service-onboarding/request.intake.schema.json",
+    "title": "New Service Onboarding Request",
+    "description": "Service Onboarding Request Schema",
+```
+
 #### Schema Mapping
 Schemas defined in the schema directory needs to be mapped in a schema.mapping.json file.
 - The Schema Mapping JSON has the schema names, schema groups 

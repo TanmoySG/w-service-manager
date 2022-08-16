@@ -1,0 +1,10 @@
+class Contract{
+    constructor(){
+        
+    }
+
+    new(){
+        
+    }
+
+}
