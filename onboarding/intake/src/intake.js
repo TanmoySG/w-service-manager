@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import JSONSchema from './helpers/schema.js';
 import WDB from './helpers/wdb.js';
 
-class Request {
+export default class Request {
     constructor(schema, dbconfig) {
         this.schema = schema
         this.jschema = new JSONSchema(this.schema)
