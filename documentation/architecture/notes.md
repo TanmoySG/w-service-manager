@@ -109,7 +109,8 @@ schema: [
 - The following is a valid contract (ignore values) for schema - [contract.service-onboarding](../../schema/contract.service-onboarding.schema.json)
 ```json
 {
-  "kind" : "contract.service-onboarding",
+  "kind" : "contract.intake.service-onboarding",
+  "request_id" : "xyz-xyz-xyz-xyz",
   "service": {
     "name": "placeholders",
     "respository" : "link.to.placeholders",
