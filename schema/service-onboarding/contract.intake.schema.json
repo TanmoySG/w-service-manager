@@ -97,6 +97,7 @@
     },
     "required": [
         "kind",
+        "request_id",
         "service",
         "data",
         "developer"
