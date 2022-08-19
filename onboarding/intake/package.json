@@ -15,6 +15,7 @@
     "is-email": "^1.0.2",
     "kafkajs": "^2.1.0",
     "node-fetch": "^3.2.10",
+    "rfc6902": "^5.0.1",
     "uuid": "^8.3.2"
   },
   "type": "module"
