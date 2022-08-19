@@ -1,0 +1,41 @@
+{
+    "request-details" : {},
+    "schema-path": "",
+    "documentation": "",
+    "instruction": [
+        "1. Fill in the contract-template fields",
+        "2. Populate the request_id field with the request_id in the request-details section",
+        "3. Take the contract-template object and apply/send to the Web API Endpoint",
+        "4. Refer to the schema for the contract from the above link in schema-path",
+        "5. Make sure the kind is set to - contract.intake.service-onboarding",
+        "6. For Additional Details refer to the documentation."
+    ],
+    "contract-template": {
+        "kind": "contract.intake.service-onboarding",
+        "request_id": "<request ID from Intake>",
+        "service": {
+            "name": "<add namde of app>",
+            "repository": "<url://link.to.repository>",
+            "details": [
+                "A short description of the app.",
+                "Needs at least to points"
+            ]
+        },
+        "data": {
+            "sample-field": {
+                "access": [
+                    "read"
+                ],
+                "use": "add usage here for this field"
+            }
+        },
+        "developer": {
+            "admin": [
+                "add admin email IDs"
+            ],
+            "contributor": [
+                "add contributor email IDs"
+            ]
+        }
+    }
+}
