@@ -26,19 +26,3 @@ export default class JSONSchema {
         return this.validator(data)
     }
 }
-
-// const jsc = new JSONSchema("/Users/tanmoysg/Work/Projects/wunder/w-service-manager/schema/service-onboarding/request.intake.schema.json")
-// // jsc.load({
-// //     type: "object",
-// //     properties: {
-// //         foo: { type: "integer" },
-// //         bar: { type: "string" }
-// //     },
-// //     required: ["foo"],
-// //     additionalProperties: false,
-// // })
-
-// console.log(jsc.validate({
-//     foo: 1,
-//     bar: "abc"
-// }))
