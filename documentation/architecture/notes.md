@@ -272,3 +272,14 @@ Example
     }
 }
 ```
+
+### JSON Patching
+
+A Patch Helper Class with `replace` , `remove` and other JSON Patching Methods.
+- https://jsonpatch.com/
+- Constructor uses - 
+  - `base` configuration for initial JSON, no patching
+  - `patched` configuration for patched JSON
+- `mergePatch` method merges patch to base
+- `reset` method resets the patched variable to base
+- All Operations have a method. [Ref.](https://jsonpatch.com/#operations)
