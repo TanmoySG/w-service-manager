@@ -23,16 +23,16 @@ class Contract {
         return `contract-${uuidv4()}`
     }
 
-    new(contract, uuid) {
+    new(contract, uuid, callback) {
         if (this.validate(contract) == false) {
             return false
         }
         contract["contractID"] = uuid
         contract["status"] = 'ready'
-        return contract
+        callback(contract)
     }
 
-    register(contract) {
+    register(contract, callback) {
         const uuid = contract.contractID
         this.kafkaClient.produce(this.config.kafkaConfig.topic, uuid,JSON.stringify(contract))
         const updatedRequestData = {
@@ -44,7 +44,7 @@ class Contract {
             "Value": contract.request_id
         }
         this.dbClient.updateData(this.dbconfig.collection, marker, updatedRequestData, function (resp) {
-            console.log(resp)
+            callback(resp)
         })
     }
 
