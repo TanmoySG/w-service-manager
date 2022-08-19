@@ -55,9 +55,3 @@ export default class ConfigParser {
         return createPatch(base, target)
     }
 }
-
-
-// const cp = new ConfigParser('/Users/tanmoysg/Work/Projects/wunder/w-service-manager/onboarding/intake/config/secrets/wdb.config.secret.json')
-// cp.loadPatchFile('/Users/tanmoysg/Work/Projects/wunder/w-service-manager/onboarding/intake/config/secrets/patches/config.contract.patch.secrets.json').patch()
-// console.log(cp.get())
-
