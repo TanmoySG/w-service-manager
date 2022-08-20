@@ -37,6 +37,6 @@ One more category of tracking that will be done as an additional on-requirement 
 
 | component   | focus   | stage | notes |
 |-------------|---------|-------|-------|
-| intake      | current | Design | |
+| intake      | current | Testing | Dev Completed and API Testing Done. Need to add Unit and/or Integration Testing|
 | audit       |  |  | |
 | integration |  |  | |
