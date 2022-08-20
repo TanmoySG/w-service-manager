@@ -6,10 +6,10 @@ import ConfigParser from "./src/helpers/config.js";
 const configurations = {
     base: 'onboarding/intake/config/secrets/config.secrets.json',
     contract: {
-        patch: 'onboarding/intake/config/secrets/patches/config.contract.patch.secrets.json'
+        patch: 'onboarding/intake/config/secrets/patches/config.contract.patch.json'
     },
     request: {
-        patch: 'onboarding/intake/config/secrets/patches/config.request.patch.secrets.json'
+        patch: 'onboarding/intake/config/secrets/patches/config.request.patch.json'
     }
 }
 
