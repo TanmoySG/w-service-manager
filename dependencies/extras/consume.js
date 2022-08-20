@@ -1,9 +1,5 @@
 import Kafka from "../../onboarding/intake/src/helpers/kafka.js";
 
-
-// Usage - Consumer
-// import Kafka from "./helpers.js";
-
 const conf = {
     cluster: {
         brokers: [`localhost:9092`],
