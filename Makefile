@@ -3,3 +3,6 @@ start-soq:
 
 teardown-soq:
 	docker-compose -f onboarding/service-onboarding-q/docker-compose.yml down 
+
+run-kafka-observer:
+	node dependencies/extras
