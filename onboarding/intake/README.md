@@ -134,3 +134,10 @@ RESPONSE
         "timestamp": 1660971000415
     }
 ```
+
+### Clean-Up
+
+Stop the services that are running and to teardown/stop the SOQ run
+```
+make teardown-soq
+```
