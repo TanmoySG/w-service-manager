@@ -1,10 +1,11 @@
+import isEmail from '@nickgatzos/is-email';
 import { v4 as uuidv4 } from 'uuid';
-import JSONSchema from './helpers/schema.js';
-import isEmail from '@nickgatzos/is-email'
+
 import Kafka from './helpers/kafka.js';
+import JSONSchema from './helpers/schema.js';
 import WDB from './helpers/wdb.js';
 
-class Contract {
+export default class Contract {
     constructor(configuration) {
         this.config = configuration
 
@@ -23,29 +24,40 @@ class Contract {
         return `contract-${uuidv4()}`
     }
 
-    new(contract, uuid, callback) {
+    register(contract, uuid, callback) {
         if (this.validate(contract) == false) {
-            return false
-        }
-        contract["contractID"] = uuid
-        contract["status"] = 'ready'
-        callback(contract)
-    }
+            callback({
+                message: "Invalid Contract"
+            })
+        } else {
+            contract["contractID"] = uuid
+            contract["status"] = 'ready'
 
-    register(contract, callback) {
-        const uuid = contract.contractID
-        this.kafkaClient.produce(this.config.kafkaConfig.topic, uuid,JSON.stringify(contract))
-        const updatedRequestData = {
-            timestamp: Date.now(),
-            status: 'proccessed',
+            this.kafkaClient.produce(this.config.kafkaConfig.topic, uuid, JSON.stringify(contract))
+            const updatedRequestData = {
+                timestamp: Date.now(),
+                status: 'proccessed',
+            }
+            const marker = {
+                "Key": "requestID",
+                "Value": contract.request_id
+            }
+            this.dbClient.updateData(this.dbconfig.collection, marker, updatedRequestData, function (resp) {
+                if (resp.status_code === '1') {
+                    const contractResponse = {
+                        contract_id: uuid,
+                        request_id: contract.request_id,
+                        request_status: updatedRequestData.status,
+                        timestamp: updatedRequestData.timestamp
+                    }
+                    callback(contractResponse)
+                } else {
+                    callback({
+                        message: "Theres Some Error"
+                    })
+                }
+            })
         }
-        const marker = {
-            "Key": "requestID",
-            "Value": contract.request_id
-        }
-        this.dbClient.updateData(this.dbconfig.collection, marker, updatedRequestData, function (resp) {
-            callback(resp)
-        })
     }
 
     validate(data) {
@@ -67,39 +79,4 @@ class Contract {
             return false
         }
     }
-
 }
-
-
-// const config = {}
-// const cntr = new Contract(config)
-
-// const smk = {
-//     "kind": "contract.intake.service-onboarding",
-//     "request_id": "d9f28bbf-f5f4-470a-ab0b-bc7cffbf3fbb",
-//     "service": {
-//         "name": "placeholders",
-//         "respository": "link.to.placeholders",
-//         "details": [
-//             "A service to store Block data Files",
-//             "Block Storage"
-//         ]
-//     },
-//     "data": {
-//         "name": {
-//             "access": ["read"],
-//             "use": "Primary Identifier"
-//         },
-//         "service_access_token": {
-//             "access": ["read"],
-//             "use": "Access Propagation"
-//         }
-//     },
-//     "developer": {
-//         "admin": ["tanmoysg@gmail.com", "tsgupta@mail.com"],
-//         "contributor": []
-//     }
-// }
-
-// const cntrct = cntr.new(smk, cntr.id())
-// cntr.register(cntrct)

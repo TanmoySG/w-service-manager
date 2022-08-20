@@ -1,5 +1,6 @@
 import * as filesystem from 'fs';
 import { v4 as uuidv4 } from 'uuid';
+
 import JSONSchema from './helpers/schema.js';
 import WDB from './helpers/wdb.js';
 
@@ -53,7 +54,6 @@ export default class Request {
                         error: "Theres Some Error"
                     })
                 }
-
             })
         } else {
             callback({
