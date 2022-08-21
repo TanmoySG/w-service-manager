@@ -30,31 +30,54 @@ export default class Contract {
                 error: "Invalid Contract"
             })
         } else {
-            contract["contractID"] = uuid
-            contract["status"] = 'ready'
-
-            this.kafkaClient.produce(this.config.kafkaConfig.topic, uuid, JSON.stringify(contract))
-            const updatedRequestData = {
-                timestamp: Date.now(),
-                status: 'proccessed',
-            }
             const marker = {
                 "Key": "requestID",
                 "Value": contract.request_id
             }
-            this.dbClient.updateData(this.dbconfig.collection, marker, updatedRequestData, function (resp) {
-                if (resp.status_code === '1') {
-                    const contractResponse = {
-                        contract_id: uuid,
-                        request_id: contract.request_id,
-                        request_status: updatedRequestData.status,
-                        timestamp: updatedRequestData.timestamp
-                    }
-                    callback(contractResponse)
-                } else {
+
+            // For Use inside Callback
+            // https://stackoverflow.com/questions/20279484/how-to-access-the-correct-this-inside-a-callback
+            var self = this
+            
+            this.dbClient.getData(this.dbconfig.collection, marker, function (data, err) {
+                if (err !== undefined) {
                     callback({
-                        error: "There's Some Error with the DB. Hold on tight!"
+                        error: "Invalid Request ID"
                     })
+                } else {
+                    const serviceOwnersInContract = contract.developer.admin
+                    if(self.validateOwners(data.serviceOwners, serviceOwnersInContract)) {
+                        contract["contractID"] = uuid
+                        contract["status"] = 'ready'
+
+                        self.kafkaClient.produce(self.config.kafkaConfig.topic, uuid, JSON.stringify(contract))
+
+                        const updatedRequestData = {
+                            timestamp: Date.now(),
+                            status: 'proccessed',
+                        }
+
+                        self.dbClient.updateData(self.dbconfig.collection, marker, updatedRequestData, function (resp) {
+                            if (resp.status_code === '1') {
+                                const contractResponse = {
+                                    contract_id: uuid,
+                                    request_id: contract.request_id,
+                                    request_status: updatedRequestData.status,
+                                    timestamp: updatedRequestData.timestamp
+                                }
+                                callback(contractResponse)
+                            } else {
+                                callback({
+                                    error: "There's Some Error with the DB. Hold on tight!"
+                                })
+                            }
+                        })
+                    } else {
+                        callback({
+                            error: "Service Owners in Request do not match."
+                        })
+                    }
+
                 }
             })
         }
@@ -78,5 +101,9 @@ export default class Contract {
         } else {
             return false
         }
+    }
+
+    validateOwners(owners, contractOwners) {
+        return contractOwners.every(val => owners.includes(val))
     }
 }
