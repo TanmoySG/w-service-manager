@@ -1,0 +1,15 @@
+{
+    "publisher": {
+        "publisher": "w.service-onboarding",
+        "origin": "wunder.service.onboarding",
+        "description": "Namespace for Service-onboarding Microservices"
+    },
+    "contexts": {
+        "context": "w.so.intake",
+        "origin": "w.so.intake/test",
+        "description": "SO-Intake Context",
+        "kind": {
+            "logs": []
+        }
+    }
+}
