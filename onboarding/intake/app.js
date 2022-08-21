@@ -1,7 +1,9 @@
 import express from "express";
-import Request from "./src/intake.js";
 import Contract from "./src/contract.js";
+import Request from "./src/intake.js";
+
 import ConfigParser from "./src/helpers/config.js";
+import Log from "./src/helpers/log.js";
 
 const configurations = {
     base: 'onboarding/intake/config/secrets/config.secrets.json',
@@ -14,14 +16,16 @@ const configurations = {
 }
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 9050;
 
+const baseConfig = new ConfigParser(configurations.base).getBase()
 const contractConfig = new ConfigParser(configurations.base).loadPatchFile(configurations.contract.patch).patch().getPatched()
 const requestConfig = new ConfigParser(configurations.base).loadPatchFile(configurations.request.patch).patch().getPatched()
 
 const onboardingRequest = new Request(requestConfig)
 const onboardingContract = new Contract(contractConfig)
 
+const log = new Log(baseConfig.logConfig)
 
 app.use(express.json());
 
@@ -35,6 +39,7 @@ app.get("/", function (request, response) {
 app.post("/v1/intake/request", function (request, response) {
     const requestData = request.body;
     onboardingRequest.new(requestData, onboardingRequest.id(), function (onboardingResponse) {
+        log.request(requestData, onboardingResponse)
         response.send(onboardingResponse)
     })
 })
@@ -43,6 +48,7 @@ app.post("/v1/intake/request", function (request, response) {
 app.post("/v1/intake/contract", function (request, response) {
     const contract = request.body;
     onboardingContract.register(contract, onboardingContract.id(), function (onboardingResponse) {
+        log.contract(contract, onboardingResponse)
         response.json(onboardingResponse)
     })
 })
