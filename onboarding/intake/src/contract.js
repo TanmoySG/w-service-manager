@@ -27,7 +27,7 @@ export default class Contract {
     register(contract, uuid, callback) {
         if (this.validate(contract) == false) {
             callback({
-                message: "Invalid Contract"
+                error: "Invalid Contract"
             })
         } else {
             contract["contractID"] = uuid
@@ -53,7 +53,7 @@ export default class Contract {
                     callback(contractResponse)
                 } else {
                     callback({
-                        message: "Theres Some Error"
+                        error: "There's Some Error with the DB. Hold on tight!"
                     })
                 }
             })
