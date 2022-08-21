@@ -1,5 +1,15 @@
 version: "3.4"
 services:
+  monitor:
+    image: ghcr.io/tanmoysg/logsmith-monitor:latest
+    container_name: monitor
+    ports:
+      - "8080:8080"
+    volumes:
+      - monitorvolume:/usr/src/app/logfiles
+    networks:
+      - soqnetworks
+
   redpanda:
     image: docker.redpanda.com/vectorized/redpanda:v21.11.15
     container_name: redpanda
@@ -34,16 +44,21 @@ services:
       - soqnetworks
 
   soq-api:
+    container_name: soq-api
     depends_on:
       - redpanda
-    build: .
+    build: ./service-onboarding-q
     ports:
       - "5002:5002"
     volumes:
-      - ./configurations/:/app/configurations/
+      - ./service-onboarding-q/configurations/:/app/configurations/
     networks:
       - soqnetworks
 
 networks:
   soqnetworks:
     driver: bridge
+
+
+volumes:
+  monitorvolume:
