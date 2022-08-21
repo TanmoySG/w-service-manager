@@ -7,21 +7,26 @@ export default class WDB {
         this.wdbEndpoint = `https://wdb.tanmoysg.com/connect?cluster=${configurations.cluster}&token=${configurations.token}`;
     }
 
-    getData(collection, callback) {
+    getData(collection, marker, callback) {
         fetch(this.wdbEndpoint, {
             method: "POST",
             body: JSON.stringify({
-                "action": "get-data",
+                "action": "view-data",
                 "payload": {
                     "database": this.database,
-                    "collection": collection
+                    "collection": collection,
+                    "marker": `${marker.Key} : ${marker.Value}`
                 }
             }),
             headers: { 'Content-Type': 'application/json' }
         }).then(function (response) {
             return response.json()
         }).then(function (response) {
-            callback(response.data, response.schema)
+            if(response.status_code === '1'){
+                callback(response.response, undefined)
+            }else{
+                callback({}, "Not Found")
+            }
         }).catch(function (error) {
             callback(error)
         })
@@ -48,7 +53,7 @@ export default class WDB {
         })
     }
 
-    deleteData(collection, maker, callback) {
+    deleteData(collection, marker, callback) {
         fetch(this.wdbEndpoint, {
             method: "POST",
             body: JSON.stringify({
@@ -56,7 +61,7 @@ export default class WDB {
                 "payload": {
                     "database": this.database,
                     "collection": collection,
-                    "marker": `${maker.Key} : ${maker.Value}`
+                    "marker": `${marker.Key} : ${marker.Value}`
                 }
             }),
             headers: { 'Content-Type': 'application/json' }
@@ -69,7 +74,7 @@ export default class WDB {
         })
     }
 
-    updateData(collection, maker, data,callback) {
+    updateData(collection, marker, data,callback) {
         fetch(this.wdbEndpoint, {
             method: "POST",
             body: JSON.stringify({
@@ -77,7 +82,7 @@ export default class WDB {
                 "payload": {
                     "database": this.database,
                     "collection": collection,
-                    "marker": `${maker.Key} : ${maker.Value}`,
+                    "marker": `${marker.Key} : ${marker.Value}`,
                     "data": data
                 }
             }),
