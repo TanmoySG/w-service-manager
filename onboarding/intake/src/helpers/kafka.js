@@ -21,7 +21,7 @@ export default class Kafka {
         await this.producer.disconnect()
     }
 
-    async consume(topics, fromBeginning) {
+    async consume(topics, fromBeginning, callback) {
         this.consumer = this.kafka.consumer({
             groupId: this.configurations.consumer.groupId,
             waitForLeaders: true
