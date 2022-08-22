@@ -31,7 +31,7 @@ export default class Kafka {
         // Find a Better Usage
         await this.consumer.run({
             eachMessage: ({ message }) => {
-                console.log(`received message: ${message.value}`)
+                callback(`${message.value}`)
             },
         })
     }
