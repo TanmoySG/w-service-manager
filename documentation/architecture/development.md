@@ -10,7 +10,7 @@ Planning Docs for more precise dev tracking will be added later. This is not one
 ## Service Onboarding
 
 Based on the components/sub-components of onboarding, the sub tasks (broadly) are
-- service-intake
+- service-intake [dev done - 22 Aug | Unit Test Addition Left]
 - service-audit
 - service-integration
 
