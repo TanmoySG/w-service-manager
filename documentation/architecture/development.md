@@ -31,12 +31,12 @@ One more category of tracking that will be done as an additional on-requirement 
 - `Standardization/Tech Debt Fixing` - Post Integration Tracking for Standardizing certain approaches and Fixing [Tech Debts](https://www.productplan.com/glossary/technical-debt/)
 
 ## Onboarding
-- intake [current focus] 
-- audit
+- intake [paused] 
+- audit [current focus] 
 - integration
 
 | component   | focus   | stage | notes |
 |-------------|---------|-------|-------|
-| intake      | current | Testing | Dev Completed and API Testing Done. Need to add Unit and/or Integration Testing|
-| audit       |  |  | |
+| intake      | paused | Testing | Dev Completed and API Testing Done. Need to add Unit and/or Integration Testing. Will be adding later.|
+| audit       | current | Development | Design Completed as part of [#1](https://github.com/TanmoySG/w-service-manager/issues/1) |
 | integration |  |  | |
