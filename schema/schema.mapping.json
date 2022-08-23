@@ -3,6 +3,10 @@
         "intake": {
             "contract": "schema/service-onboarding/contract.intake.schema.json",
             "request": "schema/service-onboarding/request.intake.schema.json"
+        },
+        "audit":{
+            "validity": "schema/service-onboarding/validity.audit.schema.json",
+            "approval": "schema/service-onboarding/approval.audit.schema.json"
         }
     }
 }
