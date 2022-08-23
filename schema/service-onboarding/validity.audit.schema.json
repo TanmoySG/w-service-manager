@@ -2,43 +2,97 @@
     "$schema": "https://json-schema.org/draft/2020-12/schema",
     "$id": "https://github.com/TanmoySG/w-service-manager/blob/service-onboarding/schema/service-onboarding/validity.audit.schema.json",
     "title": "Contract Validity",
-    "description": "Service Onboarding Requests Schema",
+    "description": "Contract Validation Schema for Audit",
     "type": "object",
     "properties": {
         "kind": {
             "description": "Kind of Resource",
-            "default": "request.intake.service-onboarding",
+            "default": "validity.audit.service-onboarding",
             "enum": [
-                "request.intake.service-onboarding"
+                "validity.audit.service-onboarding"
             ]
         },
         "service_name": {
             "description": "Name of the Service. Should be URL/Computer Friendly - words seperated by dot (.), hyphens(-), underscore (_) and in smaller case.",
             "type": "string"
         },
-        "request_type": {
-            "description": "Type of Request",
-            "type": "string",
-            "default": "create",
-            "enum": [
-                "create",
-                "delete",
-                "update"
-            ]
+        "request_id": {
+            "description": "Service Onboarding Request ID",
+            "type": "string"
         },
-        "service_owners": {
-            "description": "Service Owners",
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "minItems": 1
+        "contract_id": {
+            "description": "Service Contract ID ",
+            "type": "string"
+        },
+        "contract": {
+            "description": "Service Contract",
+            "$ref": "contract.intake.schema.json"
+        },
+        "validity": {
+            "type": "object",
+            "properties": {
+                "service_name": {
+                    "type": "object",
+                    "properties": {
+                        "valid": {
+                            "type": "boolean"
+                        },
+                        "error": {
+                            "description": "Error, if valid : false, otherwise null",
+                            "type": "string"
+                        }
+                    }
+                },
+                "repository": {
+                    "type": "object",
+                    "properties": {
+                        "valid": {
+                            "type": "boolean"
+                        },
+                        "error": {
+                            "description": "Error, if valid : false, otherwise null",
+                            "type": "string"
+                        }
+                    }
+                },
+                "data_access": {
+                    "type": "object",
+                    "properties": {
+                        "valid": {
+                            "type": "boolean"
+                        },
+                        "error": {
+                            "description": "Error, if valid : false, otherwise null",
+                            "type": "string"
+                        },
+                        "field_level_validity": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "field": {
+                                        "type": "string"
+                                    },
+                                    "valid": {
+                                        "type": "boolean"
+                                    },
+                                    "error": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "required": [
         "kind",
         "service_name",
-        "request_type",
-        "service_owners"
+        "request_id",
+        "contract_id",
+        "contract",
+        "validity"
     ]
 }
