@@ -1,12 +1,15 @@
+SCHEMAFILE=$1
+GOFILE=$2
+
 TMPFILE=$(mktemp)
 TMPOAPIFILE=$(mktemp)
 
 echo '{"components":{"schemas":null}}' > $TMPFILE
 
-SCHEMA=$(cat ../../../schema/service-onboarding/validity.audit.schema.json | jq '.components.schemas')
+SCHEMA=$(cat ${SCHEMAFILE} | jq '.components.schemas')
 jq --argjson SCHEMA "${SCHEMA}"  '.components.schemas=$SCHEMA' < $TMPFILE > $TMPOAPIFILE
 
-oapi-codegen -package spec -o spec.go -generate types,spec,skip-prune --old-config-style $TMPOAPIFILE
+oapi-codegen -package spec -o $GOFILE -generate types,spec,skip-prune --old-config-style $TMPOAPIFILE
 
 rm $TMPFILE
 rm $TMPOAPIFILE
