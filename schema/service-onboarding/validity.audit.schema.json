@@ -3,97 +3,195 @@
     "$id": "https://github.com/TanmoySG/w-service-manager/blob/service-onboarding/schema/service-onboarding/validity.audit.schema.json",
     "title": "Contract Validity",
     "description": "Contract Validation Schema for Audit",
-    "type": "object",
-    "properties": {
-        "kind": {
-            "description": "Kind of Resource",
-            "default": "validity.audit.service-onboarding",
-            "enum": [
-                "validity.audit.service-onboarding"
-            ]
-        },
-        "service_name": {
-            "description": "Name of the Service. Should be URL/Computer Friendly - words seperated by dot (.), hyphens(-), underscore (_) and in smaller case.",
-            "type": "string"
-        },
-        "request_id": {
-            "description": "Service Onboarding Request ID",
-            "type": "string"
-        },
-        "contract_id": {
-            "description": "Service Contract ID ",
-            "type": "string"
-        },
-        "contract": {
-            "description": "Service Contract",
-            "type": "object",
-            "properties" : {}
-        },
-        "validity": {
-            "type": "object",
-            "properties": {
-                "service_name": {
-                    "type": "object",
-                    "properties": {
-                        "valid": {
-                            "type": "boolean"
-                        },
-                        "error": {
-                            "description": "Error, if valid : false, otherwise null",
-                            "type": "string"
-                        }
+    "components": {
+        "schemas": {
+            "spec": {
+                "type": "object",
+                "properties": {
+                    "kind": {
+                        "$ref": "#/components/schemas/Kind"
+                    },
+                    "service_name": {
+                        "description": "Name of the Service. Should be URL/Computer Friendly - words seperated by dot (.), hyphens(-), underscore (_) and in smaller case.",
+                        "type": "string"
+                    },
+                    "request_id": {
+                        "description": "Service Onboarding Request ID",
+                        "type": "string"
+                    },
+                    "contract_id": {
+                        "description": "Service Contract ID ",
+                        "type": "string"
+                    },
+                    "contract": {
+                        "$ref": "#/components/schemas/Contract"
+                    },
+                    "validity": {
+                        "$ref": "#/components/schemas/ValidityChecks"
                     }
                 },
-                "repository": {
-                    "type": "object",
-                    "properties": {
-                        "valid": {
-                            "type": "boolean"
-                        },
-                        "error": {
-                            "description": "Error, if valid : false, otherwise null",
-                            "type": "string"
-                        }
+                "required": [
+                    "kind",
+                    "service_name",
+                    "request_id",
+                    "contract_id",
+                    "contract",
+                    "validity"
+                ]
+            },
+            "ValidityChecks": {
+                "description": "Validity Checks",
+                "type": "object",
+                "properties": {
+                    "service_name": {
+                        "$ref": "#/components/schemas/Validations"
+                    },
+                    "repository": {
+                        "$ref": "#/components/schemas/Validations"
+                    },
+                    "data_access": {
+                        "$ref": "#/components/schemas/Validations"
+                    }
+                }
+            },
+            "Validations": {
+                "type": "object",
+                "properties": {
+                    "valid": {
+                        "type": "boolean"
+                    },
+                    "error": {
+                        "description": "Error, if valid : false, otherwise null",
+                        "type": "string"
+                    },
+                    "field_level_validity": {
+                        "$ref": "#/components/schemas/FieldLevelValidity"
                     }
                 },
-                "data_access": {
+                "required": [
+                    "valid",
+                    "error"
+                ]
+            },
+            "FieldLevelValidity": {
+                "type": "array",
+                "items": {
                     "type": "object",
                     "properties": {
+                        "field": {
+                            "type": "string"
+                        },
                         "valid": {
                             "type": "boolean"
                         },
                         "error": {
-                            "description": "Error, if valid : false, otherwise null",
                             "type": "string"
-                        },
-                        "field_level_validity": {
-                            "type": "array",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "field": {
-                                        "type": "string"
-                                    },
-                                    "valid": {
-                                        "type": "boolean"
-                                    },
-                                    "error": {
-                                        "type": "string"
-                                    }
-                                }
-                            }
                         }
                     }
                 }
+            },
+            "Contract": {
+                "description":"Service Onboarding Contract.",
+                "type": "object",
+                "properties": {
+                    "kind": {
+                        "$ref": "#/components/schemas/Kind"
+                    },
+                    "request_id": {
+                        "description": "Service Onboarding ",
+                        "type": "string"
+                    },
+                    "service": {
+                        "description": "Information about Service",
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "description": "Name of Service",
+                                "type": "string"
+                            },
+                            "repository": {
+                                "description": "Open Source Repository for Service",
+                                "type": "string"
+                            },
+                            "details": {
+                                "description": "Information about what the Service does.",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "minItems": 2
+                            }
+                        },
+                        "required": [
+                            "name",
+                            "details"
+                        ]
+                    },
+                    "data": {
+                        "description": "Information about Data Required and Usage",
+                        "type": "object",
+                        "patternProperties": {
+                            "$": {
+                                "type": "object",
+                                "properties": {
+                                    "access": {
+                                        "description": "Access type",
+                                        "type": "array",
+                                        "items": {
+                                            "enum": [
+                                                "read"
+                                            ]
+                                        }
+                                    },
+                                    "use": {
+                                        "description": "Usage Information",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "access",
+                                    "use"
+                                ]
+                            }
+                        }
+                    },
+                    "developer": {
+                        "description": "Information about the App/Servie Owner/Representative",
+                        "type": "object",
+                        "properties": {
+                            "admin": {
+                                "description": "Service Admin - An Overall Service Admin Mail",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "minItems": 1
+                            },
+                            "contributor": {
+                                "description": "Service Contributor - A group Mail ID or DL for Contibutors",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "required": [
+                            "admin"
+                        ]
+                    }
+                },
+                "required": [
+                    "kind",
+                    "request_id",
+                    "service",
+                    "data",
+                    "developer"
+                ]
+            },
+            "Kind": {
+                "description": "Kind/Identifier for the Type of Document/Data",
+                "type": "string"
             }
         }
-    },
-    "required": [
-        "kind",
-        "service_name",
-        "request_id",
-        "contract_id",
-        "contract",
-        "validity"
-    ]
+    }
 }
