@@ -6,9 +6,11 @@ const conf = {
         clientId: 'example-producer',
     },
     consumer: {
-        groupId: "1234tth"
+        groupId: "1234ttggh"
     }
 }
 
 const k1 = new Kafka(conf)
-k1.consume(['intake'], true)
+k1.consume(['intake'], true, function(message){
+    console.log(message)
+})
