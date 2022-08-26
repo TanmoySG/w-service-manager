@@ -1,4 +1,6 @@
 {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/TanmoySG/w-service-manager/blob/service-onboarding/schema/service-onboarding/contract.intake.schema.json",
     "title": "New Service Onboarding Contract",
     "description": "Service Onboarding Contract Schema",
     "type": "object",
@@ -15,24 +17,6 @@
             "type": "string"
         },
         "service": {
-            "$ref": "#/definitions/Service"
-        },
-        "data": {
-            "$ref": "#/definitions/Data"
-        },
-        "developer": {
-            "$ref": "#/definitions/Developer"
-        }
-    },
-    "required": [
-        "kind",
-        "request_id",
-        "service",
-        "data",
-        "developer"
-    ],
-    "definitions": {
-        "Service": {
             "description": "Information about Service",
             "type": "object",
             "properties": {
@@ -58,38 +42,35 @@
                 "details"
             ]
         },
-        "Data": {
+        "data": {
             "description": "Information about Data Required and Usage",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "data": {
-                        "description": "Name of the Data",
-                        "type": "string"
-                    },
-                    "access": {
-                        "description": "Access type",
-                        "type": "array",
-                        "items": {
-                            "enum": [
-                                "read"
-                            ]
+            "type": "object",
+            "patternProperties": {
+                "$": {
+                    "type": "object",
+                    "properties": {
+                        "access": {
+                            "description": "Access type",
+                            "type": "array",
+                            "items": {
+                                "enum": [
+                                    "read"
+                                ]
+                            }
+                        },
+                        "use": {
+                            "description": "Usage Information",
+                            "type": "string"
                         }
                     },
-                    "use": {
-                        "description": "Usage Information",
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "data",
-                    "access",
-                    "use"
-                ]
+                    "required": [
+                        "access",
+                        "use"
+                    ]
+                }
             }
         },
-        "Developer": {
+        "developer": {
             "description": "Information about the App/Servie Owner/Representative",
             "type": "object",
             "properties": {
@@ -113,5 +94,12 @@
                 "admin"
             ]
         }
-    }
+    },
+    "required": [
+        "kind",
+        "request_id",
+        "service",
+        "data",
+        "developer"
+    ]
 }

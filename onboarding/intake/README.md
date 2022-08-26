@@ -70,14 +70,15 @@ RESPONSE
                 "Needs at least to points"
             ]
             },
-            "data": {
-            "sample-field": {
-                "access": [
-                "read"
-                ],
-                "use": "add usage here for this field"
-            }
-            },
+            "data": [
+                {
+                    "data" : "field-name",
+                    "access": [
+                        "read"
+                    ],
+                    "use": "add usage here for this field"
+                }
+            ],
             "developer": {
             "admin": [
                 "add admin email IDs"
