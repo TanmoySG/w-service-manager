@@ -215,6 +215,19 @@ Based on [Exposable Data Fields](#exposable-data), the following fields can be e
   - Auto Audit checks the contract 
   - Add more details from NOTEBOOK
 
+## Thoughts about Schema 
+
+- Schema Identifier to identify and differentiate between schemas. 
+  - the `Kind` parameter can be reused for this
+  - Can also create an ID or SchemaID field for same
+- A Codegen and Schema Validation friendly Schema should be the way to go
+  - Look at the https://github.com/TanmoySG/w-service-manager/commit/86da03bd0d0e35d7a2fb71c818f3bdfb7256de9a#diff-c076f544545d159aee008738e94dc04c3b42e0c41ce14c33fcdc66d281cda559 
+  - This schema has been tested for both codegen and schema validation. 
+  - The Codegen, though is powered by the [quicktype](https://github.com/quicktype/quicktype) tool instead of OAPI Codegen, as we do not need to make any kind of special action before code generation like moving the schemas inside components and so on. Plus this gives a dependancy (on openapi codegen) free code generation as it mostly does the parsing
+- Moving away from strictly JSON Schema as well as OAPI should help in getting the Codegen+Validation friendliness. 
+- Also all existing schemas should be moved to this "standard" schema at some point of time in the scope of this issue.
+- A Boilerplate Schema Generator Shell script can help to generate an Initial schema which then can be changed as per requirement, making the schema standardized at creation.
+
 ## Conventions
 
 These conventions should be followed while developing, but also should be revisited frequently as they might change until a solid set of conventions can be formulated.
