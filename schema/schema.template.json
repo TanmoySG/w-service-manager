@@ -1,0 +1,47 @@
+{
+    "SchemaID": "schema.namespace.parent-namespace",
+    "title": "New Service Onboarding Contract",
+    "description": "Service Onboarding Contract Schema",
+    "type": "object",
+    "properties": {
+        "kind": {
+            "description": "Kind of Resource. Every Schema must have this. Can be same as SchemaID",
+            "default": "kind.namespace.parent-namespace",
+            "enum": [
+                "kind.namespace.parent-namespace"
+            ]
+        },
+        "complexField": {
+            "$ref": "#/definitions/ComplexField"
+        }
+    },
+    "required": [
+        "kind",
+        "complexField"
+    ],
+    "definitions": {
+        "ComplexField": {
+            "description": "A Nested Complex field.",
+            "type": "object",
+            "properties": {
+                "complexSubField1": {
+                    "$ref": "#/definitions/ComplexSubField"
+                },
+                "complexSubField2": {
+                    "$ref": "#/definitions/ComplexSubField"
+                }
+            },
+            "required": [
+                "complexSubField1"
+            ]
+        },
+        "ComplexSubField": {
+            "description": "A reusable Complex Field Type",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        }
+    }
+}
