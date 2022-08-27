@@ -309,8 +309,12 @@ The Auto Audit process checks primarily three things (for now)
 - Data Access (strict)
 
 ### How to Check? 
-- Service Name and Details
-  - TBD
+- Service Name 
+  - Check if Service Name already exists
+  - Check Name Friendliness
+  - If duplicate, check fails, but is passed to manual check
+  - Manual check might also be a patching point where the manual checker mails/asks the devs to update name
+  - Not strict
 - Repository
   - The Repo check is not strict, that is, if test/check method fails, it is passed for manual check
   - Pings the Repository
