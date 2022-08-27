@@ -1,6 +1,9 @@
 # Notes
 
 Dumping Notes, Thoughts here.
+# Service Onboarding
+
+Service Onboarding Notes.
 
 ## Service Intake
 
@@ -296,3 +299,30 @@ A Patch Helper Class with `replace` , `remove` and other JSON Patching Methods.
 - `mergePatch` method merges patch to base
 - `reset` method resets the patched variable to base
 - All Operations have a method. [Ref.](https://jsonpatch.com/#operations)
+
+
+## Service Audit
+
+The Auto Audit process checks primarily three things (for now)
+- Service Name (and details)
+- Service Repository (not strict)
+- Data Access (strict)
+
+### How to Check? 
+- Service Name and Details
+  - TBD
+- Repository
+  - The Repo check is not strict, that is, if test/check method fails, it is passed for manual check
+  - Pings the Repository
+  - If the repo exists , and is public, a response is received and the check is considered as pass
+  - If repo doesn't exist or is not public a 404 response is received and the check fails
+  - Even though the check fails, the contract is not rejected as repo check is not strict and is passed to manual check
+  - Manual check is also non-strict
+- Data Access
+  - Iterate through each data access request block 
+  - Check each data-field to verify if it is exposed
+    - If it is exposed, check the access requested (read, write, etc)
+    - If the requested access is in the data-field's allowed access list, check passes
+    - Else, fails (Strict)
+  - If Not exposed, check fails (Strict)
+  - Use something like `Access Control List`
