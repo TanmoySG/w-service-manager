@@ -1,0 +1,6 @@
+#!/bin/sh
+
+SCHEMAFILEPATH=$1
+TARGETCODEPATH=$2
+
+quicktype -s schema $SCHEMAFILEPATH -o $TARGETCODEPATH
