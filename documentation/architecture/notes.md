@@ -330,3 +330,5 @@ The Auto Audit process checks primarily three things (for now)
     - Else, fails (Strict)
   - If Not exposed, check fails (Strict)
   - Use something like `Access Control List`
+
+Then the audited contract should be moved to the WDB data store for further manual auditing.
