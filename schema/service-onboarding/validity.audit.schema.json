@@ -1,4 +1,5 @@
 {
+    "SchemaID": "validity.audit.service-onboarding",
     "title": "Contract Validity",
     "description": "Contract Validation Schema for Audit",
     "type": "object",
