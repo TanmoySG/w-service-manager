@@ -1,25 +1,25 @@
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse and unparse this JSON data, add this code to your project and do:
 //
-//    spec, err := UnmarshalSpec(bytes)
-//    bytes, err = spec.Marshal()
+//    validity, err := UnmarshalValidity(bytes)
+//    bytes, err = validity.Marshal()
 
 package main
 
 import "encoding/json"
 
-func UnmarshalSpec(data []byte) (Spec, error) {
-	var r Spec
+func UnmarshalValidity(data []byte) (Validity, error) {
+	var r Validity
 	err := json.Unmarshal(data, &r)
 	return r, err
 }
 
-func (r *Spec) Marshal() ([]byte, error) {
+func (r *Validity) Marshal() ([]byte, error) {
 	return json.Marshal(r)
 }
 
 // Contract Validation Schema for Audit
-type Spec struct {
+type Validity struct {
 	Checks      Checks   `json:"checks"`      
 	Contract    Contract `json:"contract"`    
 	ContractID  string   `json:"contract_id"` // Service Contract ID
