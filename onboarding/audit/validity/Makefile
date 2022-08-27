@@ -1,2 +1,3 @@
 generate-validity:
-	quicktype -s schema ../../../schema/service-onboarding/validity.audit.schema.json -o ./spec/spec.go
+	chmod 775 ../../../schema/codegen.sh;
+	../../../schema/codegen.sh ../../../schema/service-onboarding/validity.audit.schema.json  ./spec/spec.go
