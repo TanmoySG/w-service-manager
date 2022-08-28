@@ -3,6 +3,9 @@ package kafka
 import (
 	"context"
 	"time"
+	"os"
+	"os/signal"
+	"syscall"
 	"fmt"
 
 	kafka "github.com/segmentio/kafka-go"
@@ -10,39 +13,62 @@ import (
 )
 
 type Client struct {
-	Brokers  *string
-	ClientID *string
+	Brokers  []string
+	ClientID string
+	ReadDeadline time.Time
 }
 
-func (k Client) Consumer(topic string) {
-	conn, err := kafka.DialLeader(context.Background(), "tcp", "localhost:9092", topic, 0)
-	if err != nil {
-		log.Fatal("failed to dial leader:", err)
+func (k Client) Consumer(topic string, callback func([]byte, []byte)) {
+
+	signals := make(chan os.Signal, 1)
+
+	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM)
+
+	ctx, cancel := context.WithCancel(context.Background())
+
+	// go routine for getting signals asynchronously
+	go func() {
+		sig := <-signals
+		fmt.Println("Got signal: ", sig)
+		cancel()
+	}()
+
+
+	config := kafka.ReaderConfig{
+		Brokers:  k.Brokers,
+		GroupID:  k.ClientID,
+		Topic:    topic,
+		MaxWait:  500 * time.Millisecond,
+		MinBytes: 1,
+		MaxBytes: 10e3,
 	}
 
-	conn.SetReadDeadline(time.Now().Add(10 * time.Second))
-	batch := conn.ReadBatch(10e3, 1e6) // fetch 10KB min, 1MB max
+	r := kafka.NewReader(config)
 
-	b := make([]byte, 10e3) // 10KB max per message
-	for {
-		n, err := batch.Read(b)
+	// fmt.Println("Consumer configuration: ", config)
+
+	defer func() {
+		err := r.Close()
 		if err != nil {
+			fmt.Println("Error closing consumer: ", err)
+			return
+		}
+		fmt.Println("Consumer closed")
+	}()
+
+	for {
+		m, err := r.ReadMessage(ctx)
+		if err != nil {
+			fmt.Println("Error reading message: ", err)
 			break
 		}
-		fmt.Println(string(b[:n]))
-	}
-
-	if err := batch.Close(); err != nil {
-		log.Fatal("failed to close batch:", err)
-	}
-
-	if err := conn.Close(); err != nil {
-		log.Fatal("failed to close connection:", err)
+		
+		callback(m.Key, m.Value)
 	}
 }
 
 func (k Client) Producer(topic string, key []byte, value []byte) {
-	conn, err := kafka.DialLeader(context.Background(), "tcp", *k.Brokers, topic, 0)
+	conn, err := kafka.DialLeader(context.Background(), "tcp", k.Brokers[0], topic, 0)
 	if err != nil {
 		log.Fatal("failed to dial leader:", err)
 	}
