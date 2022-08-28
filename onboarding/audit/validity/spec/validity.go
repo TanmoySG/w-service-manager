@@ -4,7 +4,7 @@
 //    validity, err := UnmarshalValidity(bytes)
 //    bytes, err = validity.Marshal()
 
-package main
+package spec
 
 import "encoding/json"
 
