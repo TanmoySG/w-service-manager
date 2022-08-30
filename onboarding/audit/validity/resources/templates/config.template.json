@@ -1,0 +1,106 @@
+{
+    "title": "Configuration",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "schema": {
+            "type": "string"
+        },
+        "logConfig": {
+            "type": "string"
+        },
+        "kafkaConfig": {
+            "$ref": "#/definitions/KafkaConfig"
+        },
+        "dbconfig": {
+            "$ref": "#/definitions/Dbconfig"
+        }
+    },
+    "required": [
+        "dbconfig",
+        "kafkaConfig",
+        "logConfig",
+        "schema"
+    ],
+    "definitions": {
+        "Dbconfig": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "cluster": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                },
+                "database": {
+                    "type": "string"
+                },
+                "collection": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "cluster",
+                "collection",
+                "database",
+                "token"
+            ],
+            "title": "Dbconfig"
+        },
+        "KafkaConfig": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "cluster": {
+                    "$ref": "#/definitions/Cluster"
+                },
+                "consumer": {
+                    "$ref": "#/definitions/Consumer"
+                },
+                "topic": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "cluster",
+                "consumer",
+                "topic"
+            ],
+            "title": "KafkaConfig"
+        },
+        "Cluster": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "brokers": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "clientId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "brokers",
+                "clientId"
+            ],
+            "title": "Cluster"
+        },
+        "Consumer": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "groupId": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "groupId"
+            ],
+            "title": "Consumer"
+        }
+    }
+}
