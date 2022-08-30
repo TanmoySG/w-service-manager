@@ -6,11 +6,14 @@ import (
 
 	// "encoding/json"
 	// "validity/pkg/kafka"
-	"validity/internal/wdb"
-	"validity/internal/config"
+	"fmt"
+	// "validity/internal/config"
+	// "validity/internal/wdb"
 )
 
 func main() {
+
+	fmt.Print("Placeholder")
 
 	// broker := []string{
 	// 	0: "localhost:9092",
@@ -40,21 +43,50 @@ func main() {
 	// })
 	// fmt.Print("test")
 
-	c, _ := config.LoadConfigFromFile("./config/secrets/config.secrets.json")
+	// c, _ := config.LoadConfigFromFile("./config/secrets/config.secrets.json")
 
-	db := c.Dbconfig.Database
-	collection := "IntakeRequest-Stage"
+	// db := c.Dbconfig.Database
 
-	w := wdb.Client{
-		Cluster: c.Dbconfig.Cluster,
-		Token: c.Dbconfig.Token,
-		Database: &db,
-	}
+	// w := wdb.Client{
+	// 	Cluster:  c.Dbconfig.Cluster,
+	// 	Token:    c.Dbconfig.Token,
+	// 	Database: &db,
+	// }
 
-	 marker :=  make(map[string]string)
-	marker["Key"] = "requestID" 
-	marker["Value"] = "request-2b3f501d-376a-4cf3-8e85-b3c1fe0cc4df"
+	// collection := "IntakeRequest-Stage"
 
-	w.GetData(collection, marker)
+	// marker := make(map[string]string)
+	// marker["Key"] = "requestID"
+	// marker["Value"] = "request-2b3f501d-376a-4cf3-8e85-b3c1fe0cc4df"
+
+	// w.GetData(collection, marker, func(resp wdb.ResponseBody, err error) {
+	// 	fmt.Println(resp, err)
+	// })
+
+	// data := wdb.Data{
+	// 	"test" : "1",
+	// 	"result" : "pass",
+	// }
+
+	// collection = "testSpace"
+
+	// w.AddData(collection, data, func(rd wdb.ResponseBody, err error) {
+	// 	fmt.Println(rd, err)
+	// } )
+
+	// marker["Key"] = "_id"
+	// marker["Value"] = "J8fAtnxVdNPkoxhAne2tzB"
+
+	// data = wdb.Data{
+	// 	"result" : "failedddd",
+	// }
+
+	// w.UpdateData(collection, marker, data, func(rb wdb.ResponseBody, err error) {
+	// 	fmt.Println(rb, err)
+	// } )
+
+	// w.DeleteData(collection, marker, func(rb wdb.ResponseBody, err error) {
+	// 	fmt.Println(rb, err)
+	// } )
 
 }
