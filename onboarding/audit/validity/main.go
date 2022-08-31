@@ -9,7 +9,7 @@ import (
 	"fmt"
 	// "validity/internal/config"
 	// "validity/internal/wdb"
-	// "validity/internal/schema"
+	"validity/internal/schema"
 )
 
 func main() {
@@ -90,12 +90,12 @@ func main() {
 	// 	fmt.Println(rb, err)
 	// } )
 
-	// s := schema.SchemaValidator{
-	// 	SchemaPath: "../../../schema/service-onboarding/validity.audit.schema.json",
-	// 	DocumentPath: "../../../schema/service-onboarding/contract.intake.schema.json",
-	// }
-	// flag , _ := s.Validate()
+	s := schema.SchemaValidator{
+		Schema:   schema.LoadFromFile("../../../schema/service-onboarding/validity.audit.schema.json"),
+		Document: schema.LoadFromFile("../../../schema/service-onboarding/contract.intake.schema.json"),
+	}
+	flag, _ := s.Validate()
 
-	// fmt.Println(flag)
+	fmt.Println(flag)
 
 }
