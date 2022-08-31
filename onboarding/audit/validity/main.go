@@ -7,9 +7,9 @@ import (
 	// "encoding/json"
 	// "validity/pkg/kafka"
 	"fmt"
-	// "validity/internal/config"
-	// "validity/internal/wdb"
-	"validity/internal/schema"
+	// "validity/pkg/config"
+	// "validity/pkg/wdb"
+	"validity/pkg/schema"
 )
 
 func main() {
