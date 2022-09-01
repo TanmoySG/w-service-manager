@@ -10,6 +10,8 @@ import (
 	// "validity/pkg/config"
 	// "validity/pkg/service-directory"
 	// "validity/pkg/wdb"
+
+	"validity/internal/control-list"
 )
 
 func main() {
@@ -108,4 +110,8 @@ func main() {
 	// 	fmt.Println(service)
 	// }
 
+	c ,_ := controlList.LoadControlList("/Users/tanmoysg/Work/Projects/wunder/w-service-manager/onboarding/audit/validity/resources/templates/control.list.json")
+	for _, v := range c {
+		fmt.Println(v)
+	}
 }
