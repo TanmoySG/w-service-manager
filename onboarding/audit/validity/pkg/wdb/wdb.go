@@ -151,3 +151,26 @@ func (w Client) DeleteData(collection string, marker map[string]string, callback
 
 	callback(result, getError(result))
 }
+
+func (w Client) GetAllData(collection string, callback func(ResponseBody, error)) {
+	connectionURL := w.getConnectionURL()
+
+	requestBody := RequestBody{
+		Action: "get-data",
+		Payload: Payload{
+			Database:   *w.Database,
+			Collection: collection,
+		},
+	}
+
+	requestJSON, _ := json.Marshal(requestBody)
+
+	response, _ := http.Post(connectionURL, ContentType, bytes.NewBuffer(requestJSON))
+
+	body, _ := ioutil.ReadAll(response.Body)
+
+	var result ResponseBody
+	_ = json.Unmarshal([]byte(body), &result)
+
+	callback(result, getError(result))
+}
