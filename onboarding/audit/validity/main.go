@@ -8,8 +8,8 @@ import (
 	// "validity/pkg/kafka"
 	"fmt"
 	// "validity/pkg/config"
+	// "validity/pkg/service-directory"
 	// "validity/pkg/wdb"
-	"validity/pkg/schema"
 )
 
 func main() {
@@ -46,7 +46,7 @@ func main() {
 
 	// c, _ := config.LoadConfigFromFile("./config/secrets/config.secrets.json")
 
-	// db := c.Dbconfig.Database
+	// db := "mockServiceDirectory" // c.Dbconfig.Database
 
 	// w := wdb.Client{
 	// 	Cluster:  c.Dbconfig.Cluster,
@@ -90,12 +90,22 @@ func main() {
 	// 	fmt.Println(rb, err)
 	// } )
 
-	s := schema.SchemaValidator{
-		Schema:   schema.LoadFromFile("../../../schema/service-onboarding/validity.audit.schema.json"),
-		Document: schema.LoadFromFile("../../../schema/service-onboarding/contract.intake.schema.json"),
-	}
-	flag, _ := s.Validate()
+	// s := schema.SchemaValidator{
+	// 	Schema:   schema.LoadFromFile("../../../schema/service-onboarding/validity.audit.schema.json"),
+	// 	Document: schema.LoadFromFile("../../../schema/service-onboarding/contract.intake.schema.json"),
+	// }
+	// flag, _ := s.Validate()
 
-	fmt.Println(flag)
+	// fmt.Println(flag)
+
+	// sd := serviceDirectory.MockClient{
+	// 	WDBClient:  w,
+	// 	Collection: "servicesDirectory",
+	// }
+
+	// services := sd.GetServiceNameList()
+	// for _, service := range *services {
+	// 	fmt.Println(service)
+	// }
 
 }
