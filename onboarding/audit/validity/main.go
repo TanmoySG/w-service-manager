@@ -110,8 +110,13 @@ func main() {
 	// 	fmt.Println(service)
 	// }
 
-	c ,_ := controlList.LoadControlList("/Users/tanmoysg/Work/Projects/wunder/w-service-manager/onboarding/audit/validity/resources/templates/control.list.json")
-	for _, v := range c {
-		fmt.Println(v)
+	cl, _ := controlList.LoadControlList("/Users/tanmoysg/Work/Projects/wunder/w-service-manager/onboarding/audit/validity/resources/templates/control.list.json")
+	ac, err := controlList.LoadControlList("./resources/examples/assigned.control.json")
+	if err != nil {
+		fmt.Printf("%s", err)
+	}
+
+	if cl.ValidateAccessForAllFields(ac) {
+		fmt.Println("Valid")
 	}
 }
