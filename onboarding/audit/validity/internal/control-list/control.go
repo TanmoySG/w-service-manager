@@ -13,15 +13,17 @@ const (
 	DELETE = "delete"
 )
 
+var STANDARDCL = []string{READ, WRITE, UPDATE, DELETE}
+
 type ControList map[string][]string
 
-func isSubset(first, second []string) bool {
+func isSubset(assigned, allowed []string) bool {
 	set := make(map[string]int)
-	for _, value := range second {
+	for _, value := range allowed {
 		set[value] += 1
 	}
 
-	for _, value := range first {
+	for _, value := range assigned {
 		if count, found := set[value]; !found {
 			return false
 		} else if count < 1 {
@@ -53,14 +55,22 @@ func (cl ControList) GetAllowedAccessForField(fieldName string) []string {
 	return cl[fieldName]
 }
 
+func (cl ControList) ValidateAccessForFieldWithStandardControlList(assignedAccessToField []string) bool {
+	return isSubset(assignedAccessToField, STANDARDCL)
+}
+
 func (cl ControList) ValidateAccessForField(fieldName string, assignedAccessToField []string) bool {
 	allowedAccessForField := cl.GetAllowedAccessForField(fieldName)
 	return isSubset(assignedAccessToField, allowedAccessForField)
 }
 
-func (cl ControList) ValidateAccessForAll(assignedAccessToField ControList) bool {
+func (cl ControList) ValidateAccessForAllFields(assignedAccessToField ControList) bool {
 	for field, access := range assignedAccessToField {
-		if !cl.ValidateAccessForField(field, access) {
+		if cl.ValidateAccessForFieldWithStandardControlList(access) {
+			if !cl.ValidateAccessForField(field, access) {
+				return false
+			}
+		} else {
 			return false
 		}
 	}

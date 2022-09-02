@@ -1,0 +1,7 @@
+{
+    "field": [
+        "read",
+        "write",
+        "update"
+    ]
+}
