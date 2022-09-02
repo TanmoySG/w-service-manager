@@ -33,6 +33,6 @@ func Ping(uri string, method string, payload *map[string]interface{}) (string, e
 	case POST:
 		return postCall(uri, payload), nil
 	default:
-		return "", fmt.Errorf("Error Pinging")
+		return "", fmt.Errorf("error pinging")
 	}
 }
