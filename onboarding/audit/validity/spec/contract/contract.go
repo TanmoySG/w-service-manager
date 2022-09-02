@@ -29,7 +29,7 @@ type Contract struct {
 
 // Information about Data Required and Usage
 type Datum struct {
-	Access []Access `json:"access"`// Access type
+	Access []string `json:"access"`// Access type
 	Data   string   `json:"data"`  // Name of the Data
 	Use    string   `json:"use"`   // Usage Information
 }
