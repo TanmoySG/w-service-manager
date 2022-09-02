@@ -4,6 +4,6 @@ import (
 	"validity/pkg/wdb"
 )
 
-type Client struct{
+type Client struct {
 	WDBClient wdb.Client
 }
