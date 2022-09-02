@@ -2,19 +2,19 @@ package kafka
 
 import (
 	"context"
-	"time"
+	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
-	"fmt"
+	"time"
 
 	kafka "github.com/segmentio/kafka-go"
 	log "github.com/sirupsen/logrus"
 )
 
 type Client struct {
-	Brokers  []string
-	ClientID string
+	Brokers      []string
+	ClientID     string
 	ReadDeadline time.Time
 }
 
@@ -32,7 +32,6 @@ func (k Client) Consumer(topic string, callback func([]byte, []byte)) {
 		fmt.Println("Got signal: ", sig)
 		cancel()
 	}()
-
 
 	config := kafka.ReaderConfig{
 		Brokers:  k.Brokers,
@@ -62,7 +61,7 @@ func (k Client) Consumer(topic string, callback func([]byte, []byte)) {
 			fmt.Println("Error reading message: ", err)
 			break
 		}
-		
+
 		callback(m.Key, m.Value)
 	}
 }
