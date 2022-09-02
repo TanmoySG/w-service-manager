@@ -9,4 +9,5 @@ run-kafka-observer:
 
 generate-validity:
 	chmod 775 ./schema/codegen.sh;
-	./schema/codegen.sh ./schema/service-onboarding/validity.audit.schema.json  ./onboarding/audit/validity/spec/validity.go spec
+	./schema/codegen.sh ./schema/service-onboarding/validity.audit.schema.json  ./onboarding/audit/validity/spec/validity/validity.go validity
+	./schema/codegen.sh ./schema/service-onboarding/contract.intake.schema.json  ./onboarding/audit/validity/spec/contract/contract.go contract
