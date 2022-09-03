@@ -39,6 +39,9 @@
             "description": "Validity Checks",
             "type": "object",
             "properties": {
+                "valid" : {
+                    "type" : "boolean"
+                },
                 "service_name": {
                     "$ref": "#/definitions/Validations"
                 },

@@ -33,6 +33,7 @@ type Checks struct {
 	DataAccess  *Validations `json:"data_access,omitempty"` 
 	Repository  *Validations `json:"repository,omitempty"`  
 	ServiceName *Validations `json:"service_name,omitempty"`
+	Valid       *bool        `json:"valid,omitempty"`       
 }
 
 type Validations struct {
