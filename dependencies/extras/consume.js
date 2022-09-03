@@ -6,7 +6,7 @@ const conf = {
         clientId: 'example-producer',
     },
     consumer: {
-        groupId: "1234ttggh"
+        groupId: "intake-oberver"
     }
 }
 

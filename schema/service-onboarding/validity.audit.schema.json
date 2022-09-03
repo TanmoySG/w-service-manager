@@ -20,7 +20,7 @@
             "type": "string"
         },
         "contract": {
-            "$ref": "#/definitions/Contract"
+            "type": "object"
         },
         "checks": {
             "$ref": "#/definitions/Checks"
