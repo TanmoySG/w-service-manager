@@ -24,6 +24,6 @@ func (c Client) CheckRepositoryStatus(repositoryURL string) validity.Validations
 		Error: overallValidityReason,
 		Valid: overallValidity,
 	}
-	
+
 	return repoValidity
 }

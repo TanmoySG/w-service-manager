@@ -19,7 +19,7 @@ func (c Client) CheckNameExistenceInServicesDirectory(name string) validity.Vali
 	}
 	servicesList := sd.GetServiceNameList()
 
-	if !slices.Contains(*servicesList, name) {
+	if slices.Contains(*servicesList, name) {
 		overallValidity = Invalid
 		overallValidityReason = NameInvalidityReason
 	}

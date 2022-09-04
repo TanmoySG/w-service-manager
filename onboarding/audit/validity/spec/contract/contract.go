@@ -20,40 +20,42 @@ func (r *Contract) Marshal() ([]byte, error) {
 
 // Service Onboarding Contract Schema
 type Contract struct {
-	Data      []Datum   `json:"data"`      
-	Developer Developer `json:"developer"` 
-	Kind      Kind      `json:"kind"`      // Kind of Resource
-	RequestID string    `json:"request_id"`// Service Onboarding
-	Service   Service   `json:"service"`   
+	Data      []Datum   `json:"data"`
+	Developer Developer `json:"developer"`
+	Kind      Kind      `json:"kind"`       // Kind of Resource
+	RequestID string    `json:"request_id"` // Service Onboarding
+	Service   Service   `json:"service"`
 }
 
 // Information about Data Required and Usage
 type Datum struct {
-	Access []string `json:"access"`// Access type
-	Data   string   `json:"data"`  // Name of the Data
-	Use    string   `json:"use"`   // Usage Information
+	Access []string `json:"access"` // Access type
+	Data   string   `json:"data"`   // Name of the Data
+	Use    string   `json:"use"`    // Usage Information
 }
 
 // Information about the App/Servie Owner/Representative
 type Developer struct {
-	Admin       []string `json:"admin"`                // Service Admin - An Overall Service Admin Mail
-	Contributor []string `json:"contributor,omitempty"`// Service Contributor - A group Mail ID or DL for Contibutors
+	Admin       []string `json:"admin"`                 // Service Admin - An Overall Service Admin Mail
+	Contributor []string `json:"contributor,omitempty"` // Service Contributor - A group Mail ID or DL for Contibutors
 }
 
 // Information about Service
 type Service struct {
-	Details    []string `json:"details"`             // Information about what the Service does.
-	Name       string   `json:"name"`                // Name of Service
-	Repository *string  `json:"repository,omitempty"`// Open Source Repository for Service
+	Details    []string `json:"details"`              // Information about what the Service does.
+	Name       string   `json:"name"`                 // Name of Service
+	Repository *string  `json:"repository,omitempty"` // Open Source Repository for Service
 }
 
 type Access string
+
 const (
 	Read Access = "read"
 )
 
 // Kind of Resource
 type Kind string
+
 const (
 	ContractIntakeServiceOnboarding Kind = "contract.intake.service-onboarding"
 )

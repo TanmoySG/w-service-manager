@@ -16,6 +16,19 @@ var (
 	Invalid = false
 )
 
+func NewChecksClient(client wdb.Client, serviceDirectory string, controlList string) Client {
+	wdbClient := wdb.Client{
+		Cluster:  client.Cluster,
+		Token:    client.Token,
+		Database: &serviceDirectory,
+	}
+
+	return Client{
+		WDBClient:   wdbClient,
+		ControlList: controlList,
+	}
+}
+
 func (c Client) GetContractValidity(contract contract.Contract) validity.Checks {
 
 	overallContractValidity := Valid

@@ -46,10 +46,7 @@ func (avc AuditValidityClient) RunAuditValidity() {
 			fmt.Println(err)
 		}
 
-		c := checks.Client{
-			WDBClient:   WDBClient,
-			ControlList: avc.ControlList,
-		}
+		c := checks.NewChecksClient(WDBClient, "mockServiceDirectory", avc.ControlList)
 
 		contractValidity := c.GetContractValidity(contractParsed)
 
@@ -78,7 +75,7 @@ func (avc AuditValidityClient) RunAuditValidity() {
 		}
 
 		WDBClient.UpdateData("IntakeRequest-Stage", wdbUpdateMarker, updatedData, func(rb wdb.ResponseBody, err error) {
-			fmt.Printf("%s - %v", rb, err)
+			fmt.Println(validityObject.Checks.Valid)
 		})
 	})
 }
