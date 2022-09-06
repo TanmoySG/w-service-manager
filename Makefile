@@ -1,5 +1,7 @@
 start-soq:
 	docker-compose -f onboarding/docker-compose.yml up -d
+	sh onboarding/scripts/monitorStartup.sh
+
 
 teardown-soq:
 	docker-compose -f onboarding/docker-compose.yml down 
