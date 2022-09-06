@@ -8,6 +8,9 @@
                 "topic": "approval"
             },
             {
+                "topic": "invalid"
+            },
+            {
                 "topic": "integrate"
             }
         ],
