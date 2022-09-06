@@ -16,7 +16,7 @@ func main() {
 	av := AuditValidity.AuditValidityClient{
 		Config:                   *c,
 		ServiceDirectory:         "",
-		ControlList:              "resources/templates/control.list.json",
+		ControlList:              "config/control.list.json",
 		SourceTopic:              "intake",
 		SinkTopic:                "audit",
 		InvalidContractSinkTopic: "invalid",
