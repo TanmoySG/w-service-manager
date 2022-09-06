@@ -20,11 +20,12 @@ const (
 )
 
 type AuditValidityClient struct {
-	Config           config.Config
-	ServiceDirectory string
-	ControlList      string
-	SourceTopic      string // find better name
-	SinkTopic        string // find better name
+	Config                   config.Config
+	ServiceDirectory         string
+	ControlList              string
+	SourceTopic              string // find better name
+	SinkTopic                string // find better name
+	InvalidContractSinkTopic string
 }
 
 func (avc AuditValidityClient) RunAuditValidity() {
@@ -64,7 +65,11 @@ func (avc AuditValidityClient) RunAuditValidity() {
 			fmt.Println(err)
 		}
 
-		kc.Producer(avc.SinkTopic, uuid, validityByte)
+		if *contractValidity.Valid {
+			kc.Producer(avc.SinkTopic, uuid, validityByte)
+		} else {
+			kc.Producer(avc.InvalidContractSinkTopic, uuid, validityByte)
+		}
 
 		wdbUpdateMarker := make(map[string]string)
 		wdbUpdateMarker["Key"] = "requestID"
