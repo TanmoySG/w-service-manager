@@ -10,8 +10,8 @@ import (
 var NameInvalidityReason = "Name Already Exists."
 
 func (c Client) CheckNameExistenceInServicesDirectory(name string) validity.Validations {
-	var overallValidity bool = Valid
-	var overallValidityReason string = "Valid"
+	var overallValidity bool = Valid.Flag
+	var overallValidityReason string = *Valid.Message
 
 	sd := serviceDirectory.MockClient{
 		WDBClient:  c.WDBClient,
@@ -20,7 +20,7 @@ func (c Client) CheckNameExistenceInServicesDirectory(name string) validity.Vali
 	servicesList := sd.GetServiceNameList()
 
 	if slices.Contains(*servicesList, name) {
-		overallValidity = Invalid
+		overallValidity = Invalid.Flag
 		overallValidityReason = NameInvalidityReason
 	}
 

@@ -14,25 +14,25 @@ func (c Client) CheckAssignedDataAccess(assignedAccess []contract.Datum) validit
 
 	var fieldLevelAccessValidity []validity.FieldLevelValidity
 
-	var overallDataAccessValidity bool = Valid
-	var overallDataAccessValidityReason string = "Valid"
+	var overallDataAccessValidity bool = Valid.Flag
+	var overallDataAccessValidityReason string = *Valid.Message
 
 	for _, data := range assignedAccess {
 		if cl.ValidateAccessForField(data.Data, data.Access) {
 			fieldAccess := validity.FieldLevelValidity{
 				Error: nil,
 				Field: &data.Data,
-				Valid: &Valid,
+				Valid: &Valid.Flag,
 			}
 			fieldLevelAccessValidity = append(fieldLevelAccessValidity, fieldAccess)
 		} else {
 			fieldAccess := validity.FieldLevelValidity{
 				Error: &AccessInvalidityReason,
 				Field: &data.Data,
-				Valid: &Invalid,
+				Valid: &Invalid.Flag,
 			}
 			fieldLevelAccessValidity = append(fieldLevelAccessValidity, fieldAccess)
-			overallDataAccessValidity = Invalid
+			overallDataAccessValidity = Invalid.Flag
 			overallDataAccessValidityReason = AccessInvalidityReason
 		}
 	}

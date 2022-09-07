@@ -11,9 +11,22 @@ type Client struct {
 	ControlList string
 }
 
+type CheckFlag struct {
+	Flag    bool
+	Message *string
+}
+
 var (
-	Valid   = true
-	Invalid = false
+	validityReason = "Valid" // Need to be a bit more creative :)
+
+	Invalid = CheckFlag{
+		Flag: false,
+	}
+
+	Valid = CheckFlag{
+		Flag:    true,
+		Message: &validityReason,
+	}
 )
 
 func NewChecksClient(client wdb.Client, serviceDirectory string, controlList string) Client {
@@ -31,7 +44,7 @@ func NewChecksClient(client wdb.Client, serviceDirectory string, controlList str
 
 func (c Client) GetContractValidity(contract contract.Contract) validity.Checks {
 
-	overallContractValidity := Valid
+	overallContractValidity := Valid.Flag
 
 	nameValidation := c.CheckNameExistenceInServicesDirectory(contract.Service.Name)
 	repositoryValidation := c.CheckRepositoryStatus(*contract.Service.Repository)
@@ -40,7 +53,7 @@ func (c Client) GetContractValidity(contract contract.Contract) validity.Checks 
 	serviceValidationScore := c.GetServiceValidationScore(nameValidation, repositoryValidation, accessValidation)
 
 	if serviceValidationScore < MinimumThresholdScore {
-		overallContractValidity = Invalid
+		overallContractValidity = Invalid.Flag
 	}
 
 	checks := validity.Checks{
