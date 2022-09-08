@@ -76,7 +76,7 @@ func (avc AuditValidityClient) RunAuditValidity() {
 		wdbUpdateMarker["Value"] = contractParsed.RequestID
 
 		updatedData := wdb.Data{
-			"status": "audit-validated",
+			"status": "audit-validation",
 		}
 
 		WDBClient.UpdateData(avc.Config.Dbconfig.Collection, wdbUpdateMarker, updatedData, func(rb wdb.ResponseBody, err error) {
