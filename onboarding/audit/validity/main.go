@@ -10,9 +10,9 @@ import (
 
 func main() {
 
-	log.SetLevel(log.InfoLevel)
+	log.SetLevel(log.TraceLevel)
 
-	log.Info("Audit Validation Started")
+	log.Info("Contract Audit-Validation Started")
 
 	c, _ := config.LoadConfigFromFile("./config/secrets/config.secrets.json")
 

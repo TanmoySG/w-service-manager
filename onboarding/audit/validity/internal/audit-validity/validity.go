@@ -2,6 +2,7 @@ package AuditValidity
 
 import (
 	"fmt"
+	"strings"
 	"time"
 	"validity/internal/checks"
 	"validity/pkg/config"
@@ -9,6 +10,8 @@ import (
 	"validity/pkg/wdb"
 	"validity/spec/contract"
 	"validity/spec/validity"
+
+	log "github.com/sirupsen/logrus"
 )
 
 var (
@@ -26,6 +29,24 @@ type AuditValidityClient struct {
 	ContractSourceTopic      string // find better name
 	ValidContractSinkTopic   string // find better name
 	InvalidContractSinkTopic string
+}
+
+func getInvalidityLogStatement(contractValidity validity.Checks) string {
+	var invalidity []string
+
+	if !contractValidity.DataAccess.Valid {
+		invalidity = append(invalidity, contractValidity.DataAccess.Error)
+	}
+
+	if !contractValidity.Repository.Valid {
+		invalidity = append(invalidity, contractValidity.Repository.Error)
+	}
+
+	if !contractValidity.ServiceName.Valid {
+		invalidity = append(invalidity, contractValidity.ServiceName.Error)
+	}
+
+	return strings.Join(invalidity[:], " , ")
 }
 
 func (avc AuditValidityClient) RunAuditValidity() {
@@ -47,6 +68,8 @@ func (avc AuditValidityClient) RunAuditValidity() {
 			fmt.Println(err)
 		}
 
+		log.Debugf("Proccessing Contract with Contract ID %s", uuid)
+
 		c := checks.NewChecksClient(WDBClient, avc.ServiceDirectory, avc.ControlList)
 
 		contractValidity := c.GetContractValidity(contractParsed)
@@ -67,8 +90,10 @@ func (avc AuditValidityClient) RunAuditValidity() {
 
 		if *contractValidity.Valid {
 			kc.Producer(avc.ValidContractSinkTopic, uuid, validityByte)
+			log.Infof("Contract with ID %s is %s", uuid, *checks.Valid.Message)
 		} else {
 			kc.Producer(avc.InvalidContractSinkTopic, uuid, validityByte)
+			log.Errorf("Contract with ID %s is Invalid : %v", uuid, getInvalidityLogStatement(contractValidity))
 		}
 
 		wdbUpdateMarker := make(map[string]string)
@@ -79,8 +104,6 @@ func (avc AuditValidityClient) RunAuditValidity() {
 			"status": "audit-validation",
 		}
 
-		WDBClient.UpdateData(avc.Config.Dbconfig.Collection, wdbUpdateMarker, updatedData, func(rb wdb.ResponseBody, err error) {
-			fmt.Println(validityObject.Checks.Valid)
-		})
+		WDBClient.UpdateData(avc.Config.Dbconfig.Collection, wdbUpdateMarker, updatedData, func(rb wdb.ResponseBody, err error) {})
 	})
 }
