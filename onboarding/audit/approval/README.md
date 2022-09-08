@@ -1,0 +1,1 @@
+This is a Placeholder Microservice for Approval until one is in the dev pipeline. It Consumes from audit topic and publishes to integration topic.

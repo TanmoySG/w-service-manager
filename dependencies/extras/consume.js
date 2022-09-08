@@ -11,6 +11,6 @@ const conf = {
 }
 
 const k1 = new Kafka(conf)
-k1.consume(['invalid'], true, function(message){
+k1.consume(['integrate'], true, function(message){
     console.log(message)
 })
