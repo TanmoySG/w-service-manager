@@ -70,12 +70,8 @@
                     },
                     "access": {
                         "description": "Access type",
-                        "type": "array",
-                        "items": {
-                            "enum": [
-                                "read"
-                            ]
-                        }
+                        "type": "array"
+                        
                     },
                     "use": {
                         "description": "Usage Information",
