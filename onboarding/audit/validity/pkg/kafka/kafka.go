@@ -2,7 +2,6 @@ package kafka
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"os/signal"
 	"syscall"
@@ -29,7 +28,7 @@ func (k Client) Consumer(topic string, callback func([]byte, []byte)) {
 	// go routine for getting signals asynchronously
 	go func() {
 		sig := <-signals
-		fmt.Println("Got signal: ", sig)
+		log.Fatal("Got signal: ", sig)
 		cancel()
 	}()
 
@@ -44,21 +43,19 @@ func (k Client) Consumer(topic string, callback func([]byte, []byte)) {
 
 	r := kafka.NewReader(config)
 
-	// fmt.Println("Consumer configuration: ", config)
-
 	defer func() {
 		err := r.Close()
 		if err != nil {
-			fmt.Println("Error closing consumer: ", err)
+			log.Fatal("Error closing consumer: ", err)
 			return
 		}
-		fmt.Println("Consumer closed")
+		log.Fatal("Consumer closed")
 	}()
 
 	for {
 		m, err := r.ReadMessage(ctx)
 		if err != nil {
-			fmt.Println("Error reading message: ", err)
+			log.Fatal("Error reading message: ", err)
 			break
 		}
 

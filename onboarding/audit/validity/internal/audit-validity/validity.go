@@ -23,8 +23,8 @@ type AuditValidityClient struct {
 	Config                   config.Config
 	ServiceDirectory         string
 	ControlList              string
-	SourceTopic              string // find better name
-	SinkTopic                string // find better name
+	ContractSourceTopic      string // find better name
+	ValidContractSinkTopic   string // find better name
 	InvalidContractSinkTopic string
 }
 
@@ -41,13 +41,13 @@ func (avc AuditValidityClient) RunAuditValidity() {
 		Database: &avc.Config.Dbconfig.Database,
 	}
 
-	kc.Consumer(avc.SourceTopic, func(uuid, contractBytes []byte) {
+	kc.Consumer(avc.ContractSourceTopic, func(uuid, contractBytes []byte) {
 		contractParsed, err := contract.UnmarshalContract(contractBytes)
 		if err != nil {
 			fmt.Println(err)
 		}
 
-		c := checks.NewChecksClient(WDBClient, "mockServiceDirectory", avc.ControlList)
+		c := checks.NewChecksClient(WDBClient, avc.ServiceDirectory, avc.ControlList)
 
 		contractValidity := c.GetContractValidity(contractParsed)
 
@@ -66,7 +66,7 @@ func (avc AuditValidityClient) RunAuditValidity() {
 		}
 
 		if *contractValidity.Valid {
-			kc.Producer(avc.SinkTopic, uuid, validityByte)
+			kc.Producer(avc.ValidContractSinkTopic, uuid, validityByte)
 		} else {
 			kc.Producer(avc.InvalidContractSinkTopic, uuid, validityByte)
 		}
@@ -79,7 +79,7 @@ func (avc AuditValidityClient) RunAuditValidity() {
 			"status": "audit-validated",
 		}
 
-		WDBClient.UpdateData("IntakeRequest-Stage", wdbUpdateMarker, updatedData, func(rb wdb.ResponseBody, err error) {
+		WDBClient.UpdateData(avc.Config.Dbconfig.Collection, wdbUpdateMarker, updatedData, func(rb wdb.ResponseBody, err error) {
 			fmt.Println(validityObject.Checks.Valid)
 		})
 	})

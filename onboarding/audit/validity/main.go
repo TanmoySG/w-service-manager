@@ -1,25 +1,28 @@
 package main
 
 import (
-	"fmt"
 	"validity/pkg/config"
 
 	AuditValidity "validity/internal/audit-validity"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
 
-	fmt.Print("Audit Validation Started")
+	log.SetLevel(log.InfoLevel)
+
+	log.Info("Audit Validation Started")
 
 	c, _ := config.LoadConfigFromFile("./config/secrets/config.secrets.json")
 
 	av := AuditValidity.AuditValidityClient{
 		Config:                   *c,
-		ServiceDirectory:         "",
-		ControlList:              "config/control.list.json",
-		SourceTopic:              "intake",
-		SinkTopic:                "audit",
-		InvalidContractSinkTopic: "invalid",
+		ServiceDirectory:         c.ServiceConfig.ServiceDirectory,
+		ControlList:              c.ServiceConfig.ControlList,
+		ContractSourceTopic:      c.ServiceConfig.ContractSourceTopic,
+		ValidContractSinkTopic:   c.ServiceConfig.ValidContractSinkTopic,
+		InvalidContractSinkTopic: c.ServiceConfig.InvalidContractSinkTopic,
 	}
 	av.RunAuditValidity()
 }

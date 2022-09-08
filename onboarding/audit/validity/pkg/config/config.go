@@ -19,10 +19,11 @@ func (r *Config) Marshal() ([]byte, error) {
 }
 
 type Config struct {
-	Dbconfig    Dbconfig    `json:"dbconfig"`
-	KafkaConfig KafkaConfig `json:"kafkaConfig"`
-	LogConfig   string      `json:"logConfig"`
-	Schema      string      `json:"schema"`
+	Dbconfig      Dbconfig      `json:"dbconfig"`
+	KafkaConfig   KafkaConfig   `json:"kafkaConfig"`
+	LogConfig     string        `json:"logConfig"`
+	Schema        string        `json:"schema"`
+	ServiceConfig ServiceConfig `json:"serviceConfig"`
 }
 
 type Dbconfig struct {
@@ -45,4 +46,12 @@ type Cluster struct {
 
 type Consumer struct {
 	GroupID string `json:"groupId"`
+}
+
+type ServiceConfig struct {
+	ServiceDirectory         string `json:"serviceDirectory"`
+	ControlList              string `json:"controlList"`
+	ContractSourceTopic      string `json:"contractSourceTopic"`
+	ValidContractSinkTopic   string `json:"validContractSinkTopic"`
+	InvalidContractSinkTopic string `json:"invalidContractSinkTopic"`
 }
