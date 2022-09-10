@@ -332,3 +332,14 @@ The Auto Audit process checks primarily three things (for now)
   - Use something like `Access Control List`
 
 Then the audited contract should be moved to the WDB data store for further manual auditing.
+
+## SO Integration
+
+Creates 
+- Namespace 
+- UUID (format `service-1234-wxyz-12ab-4r5t`)
+- Public Key (RSA)
+- Contract
+- token (unused/not populated yet)
+
+For now, will be stored in wdb.
