@@ -17,6 +17,7 @@
     "kafkajs": "^2.1.0",
     "logsmithjs": "^0.0.4",
     "node-fetch": "^3.2.10",
+    "nodemailer": "^6.7.8",
     "rfc6902": "^5.0.1",
     "uuid": "^8.3.2"
   }
