@@ -9,7 +9,7 @@ export default class Mailer {
     }
 
 
-    async mail(to, subject, body, attachments) {
+    mail(to, subject, body, attachments, callback) {
         let transporter = nodemailer.createTransport({
             host: this.Server,
             port: this.Port,
@@ -21,7 +21,7 @@ export default class Mailer {
         });
 
         // send mail with defined transport object
-        let info = await transporter.sendMail({
+        let info = transporter.sendMail({
             from: `${this.Sender}`, // sender address
             to: to.join(" , "), // list of receivers
             subject: subject, // Subject line
@@ -29,7 +29,6 @@ export default class Mailer {
             attachments: attachments
         });
 
-        console.log("Message sent: %s", info.messageId);
+        callback(`Message sent: ${info.messageId}`);
     }
-
 }
