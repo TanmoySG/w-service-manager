@@ -11,7 +11,8 @@ const config = {
 }
 
 const k = new Kafka(config)
-k.consume(['audit'], false, function (contract) {
-    console.log("Retrived Contract", contract["contract_id"])
-    k.produce("integrate", contract["contract_id"], contract)
+k.consume(['audit'], false, function (contractString) {
+    const contract = JSON.parse(contractString)
+    console.log("Retrived Contract", contract["contract_id"] )
+    k.produce("integrate", contract["contract_id"], JSON.stringify(contract))
 })
