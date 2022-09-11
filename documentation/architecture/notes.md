@@ -342,4 +342,6 @@ Creates
 - Contract
 - token (unused/not populated yet)
 
+![](./diagrams/integration.jpeg)
+
 For now, will be stored in wdb.
