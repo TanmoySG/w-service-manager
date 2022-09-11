@@ -1,0 +1,18 @@
+{
+    "env": "test",
+    "logfile": "./logs.log",
+    "consoleOnly": false,
+    "logStatementPattern": "{message}",
+    "logFormat": "statement",
+    "monitorLogging": false,
+    "monitor": {
+        "port": "8080",
+        "server": "localhost",
+        "publisher": {
+            "publisher": "w.service.onboarding"
+        },
+        "context": {
+            "context": "w.so.intake"
+        }
+    }
+}
