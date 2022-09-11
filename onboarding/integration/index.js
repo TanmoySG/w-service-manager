@@ -1,3 +1,4 @@
+import * as fs from "fs";
 import Logsmith from "logsmithjs";
 import { v4 as uuidv4 } from 'uuid';
 import ConfigParser from "./src/helpers/config.js";
@@ -10,12 +11,17 @@ function getToken() {
     return Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2)
 }
 
+function getEmailHTML(filepath) {
+    return fs.readFileSync(filepath)
+}
+
 function main(configurations) {
 
     const lConfig = configurations["logConfig"]
     const kConfig = configurations["kafkaConfig"]
     const wConfig = configurations["dbconfig"]
     const mConfig = configurations["smtpConfig"]
+    const eConfig = configurations["emailTemplates"]
 
     const log = new Logsmith({});
     log.fetchConfigFromFile(lConfig)
@@ -45,16 +51,26 @@ function main(configurations) {
             token: getToken()
         }
 
-        const attachments = [{   // utf-8 string as an attachment
-            filename: '.pvtKey',
-            content: privateKey // your string
-        }]
+        const attachments = [
+            {
+                filename: '.pvtKey',
+                content: privateKey
+            },
+            {
+                filename: 'contract.json',
+                content: JSON.stringify(contract)
+            },
+            {
+                filename: 'validity.json',
+                content: JSON.stringify(contractAndChecks)
+            }
+        ]
 
         const dbClient = new WDB(wConfig)
         dbClient.addData('dev', integrationData, function (resp) {
             if (resp.status_code === '1') {
                 const mail = new Mailer(mConfig)
-                mail.mail(receiver, "Service Onboarded", "Please find Attached the Private Key", attachments, function (msg) {
+                mail.mail(receiver, "Service Onboarded", getEmailHTML(eConfig["successfull-onboarding"]), attachments, function (msg) {
                     log.SUCCESS(`Service Integration Successfull for Service with ID ${serviceUUID} . Mail Sent to Admin.`)
                 })
             } else {
