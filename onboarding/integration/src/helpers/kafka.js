@@ -1,9 +1,9 @@
-import { Kafka as KClient, Partitioners } from "kafkajs";
+import { Kafka as KClient, Partitioners, logLevel } from "kafkajs";
 
 export default class Kafka {
     constructor(configurations) {
         this.configurations = configurations;
-        this.kafka = new KClient(this.configurations.cluster)
+        this.kafka = new KClient({ logLevel: logLevel.ERROR, ...this.configurations.cluster })
     }
 
     async produce(topic, key, data) {
