@@ -1,0 +1,44 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://github.com/TanmoySG/w-service-manager/blob/service-onboarding/schema/service-onboarding/request.intake.schema.json",
+    "title": "New Service Onboarding Requests",
+    "description": "Service Onboarding Requests Schema",
+    "type": "object",
+    "properties": {
+        "kind": {
+            "description": "Kind of Resource",
+            "default": "request.intake.service-onboarding",
+            "enum": [
+                "request.intake.service-onboarding"
+            ]
+        },
+        "service_name": {
+            "description": "Name of the Service. Should be URL/Computer Friendly - words seperated by dot (.), hyphens(-), underscore (_) and in smaller case.",
+            "type": "string"
+        },
+        "request_type": {
+            "description": "Type of Request",
+            "type": "string",
+            "default": "create",
+            "enum": [
+                "create",
+                "delete",
+                "update"
+            ]
+        },
+        "service_owners": {
+            "description": "Service Owners",
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        }
+    },
+    "required": [
+        "kind",
+        "service_name",
+        "request_type",
+        "service_owners"
+    ]
+}

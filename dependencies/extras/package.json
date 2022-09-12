@@ -1,0 +1,13 @@
+{
+  "name": "intake",
+  "version": "0.0.1",
+  "description": "Microservice for Onboarding Requests Intake",
+  "main": "consume.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TanmoySG",
+  "license": "ISC",
+  "dependencies": {},
+  "type": "module"
+}

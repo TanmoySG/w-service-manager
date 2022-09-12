@@ -1,0 +1,15 @@
+{
+    "email": [
+        "read"
+    ],
+    "username": [
+        "read"
+    ],
+    "service-id": [
+        "read"
+    ],
+    "service-access-token": [
+        "read",
+        "create"
+    ]
+}

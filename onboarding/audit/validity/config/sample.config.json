@@ -1,0 +1,23 @@
+{
+    "schema": "schema/service-onboarding/request.intake.schema.json",
+    "responseTemplate": "onboarding/intake/templates/contract.template.json",
+    "logConfig": "onboarding/intake/config/log.config.json",
+    "kafkaConfig": {
+        "cluster": {
+            "brokers": [
+                "localhost:9092"
+            ],
+            "clientId": "example-cons"
+        },
+        "consumer": {
+            "groupId": "consumerOne"
+        },
+        "topic": "intake"
+    },
+    "dbconfig": {
+        "cluster": "******",
+        "token": "*****",
+        "database": "serviceOnboardingStage",
+        "collection": "IntakeRequest-Stage"
+    }
+}

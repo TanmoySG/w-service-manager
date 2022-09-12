@@ -1,0 +1,113 @@
+{
+    "title": "New Service Onboarding Contract",
+    "description": "Service Onboarding Contract Schema",
+    "type": "object",
+    "properties": {
+        "kind": {
+            "description": "Kind of Resource",
+            "default": "contract.intake.service-onboarding",
+            "enum": [
+                "contract.intake.service-onboarding"
+            ]
+        },
+        "request_id": {
+            "description": "Service Onboarding ",
+            "type": "string"
+        },
+        "service": {
+            "$ref": "#/definitions/Service"
+        },
+        "data": {
+            "$ref": "#/definitions/Data"
+        },
+        "developer": {
+            "$ref": "#/definitions/Developer"
+        }
+    },
+    "required": [
+        "kind",
+        "request_id",
+        "service",
+        "data",
+        "developer"
+    ],
+    "definitions": {
+        "Service": {
+            "description": "Information about Service",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "Name of Service",
+                    "type": "string"
+                },
+                "repository": {
+                    "description": "Open Source Repository for Service",
+                    "type": "string"
+                },
+                "details": {
+                    "description": "Information about what the Service does.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 2
+                }
+            },
+            "required": [
+                "name",
+                "details"
+            ]
+        },
+        "Data": {
+            "description": "Information about Data Required and Usage",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "description": "Name of the Data",
+                        "type": "string"
+                    },
+                    "access": {
+                        "description": "Access type",
+                        "type": "array"
+                        
+                    },
+                    "use": {
+                        "description": "Usage Information",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "data",
+                    "access",
+                    "use"
+                ]
+            }
+        },
+        "Developer": {
+            "description": "Information about the App/Servie Owner/Representative",
+            "type": "object",
+            "properties": {
+                "admin": {
+                    "description": "Service Admin - An Overall Service Admin Mail",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1
+                },
+                "contributor": {
+                    "description": "Service Contributor - A group Mail ID or DL for Contibutors",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "admin"
+            ]
+        }
+    }
+}
